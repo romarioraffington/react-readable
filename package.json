@@ -2,7 +2,6 @@
   "name": "react-readable",
   "version": "0.0.1",
   "description": "A Reddit / Product Hunt Clone built with React",
-  "main": "index.js",
   "keywords": [
     "udacity",
     "redux",
