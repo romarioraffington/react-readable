@@ -1,15 +1,15 @@
-require('dotenv').config()
-
 const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
-const config = require('./server/config')
-const categories = require('./server/categories')
-const posts = require('./server/posts')
-const comments = require('./server/comments')
+const chalk = require('chalk');
+const categories = require('./categories')
+const posts = require('./posts')
+const comments = require('./comments');
+const pkg = require('../package.json');
+
+require('dotenv').load();
 
 const app = express()
-
 app.use(express.static('public'))
 app.use(cors())
 
@@ -315,6 +315,14 @@ app.delete('/comments/:id', (req, res) => {
 		)
 })
 
-app.listen(config.port, () => {
-	console.log('Server listening on port %s, Ctrl+C to stop', config.port)
-})
+app.listen(process.env.SERVER_PORT, () => {
+  console.log(`
+    --
+    ${chalk.cyan(`${pkg.name} - Backend 🌎`)}
+    
+    Environment :   ${process.env.NODE_ENV}
+    Host        :   ${process.env.SERVER_HOST}
+    Port        :   ${process.env.SERVER_PORT}
+    --`
+  );
+});
