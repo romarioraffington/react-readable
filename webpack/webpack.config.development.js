@@ -18,10 +18,20 @@ module.exports = {
   },
   module: {
     rules: [{
-      test: /\.scss$/,
+      test: /\.scss$/,   
       use: ExtractTextPlugin.extract({
         fallback: 'style-loader',
-        use: ['css-loader', 'sass-loader'],
+        use: [{
+          loader: 'css-loader',
+          query: {
+            modules: true,
+            sourceMap: true,
+            importLoaders: 2,
+            localIdentName: '[name]__[local]___[hash:base64:5]'
+            },
+          },
+        'sass-loader',
+        ],
       }),
     }
     ],

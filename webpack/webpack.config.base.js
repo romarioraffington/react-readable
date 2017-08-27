@@ -39,8 +39,10 @@ module.exports = {
       template: `${clientFolder}/public/template.html`,
     }),
     new ExtractTextPlugin({
+      allChunks: true,
+      ignoreOrder: true,
       filename: 'assets/bundle.[hash].css',
-      disable: NODE_ENV === 'development'
+      disable: NODE_ENV === 'development',
     }),
   ],
 }
