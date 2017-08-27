@@ -27,6 +27,9 @@ module.exports = {
       exclude: /node_modules/,
     }],
   },
+  resolve: {
+    modules: [clientFolder, 'node_modules'],
+  },
   plugins: [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(NODE_ENV),
