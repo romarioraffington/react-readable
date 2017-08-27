@@ -6,7 +6,7 @@ module.exports = {
   devtool: 'cheap-source-map',
   module: {
     rules: [{
-      test: /\.sass$/,
+      test: /\.scss$/,
       use: ExtractTextPlugin.extract({
         fallback: 'style-loader',
         use: [
