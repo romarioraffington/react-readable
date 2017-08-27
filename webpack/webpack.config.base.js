@@ -33,7 +33,7 @@ module.exports = {
     }),
     new HTMLWebpackPlugin({
       inject: true,
-      template: `${clientFolder}/public/template.html`
+      template: `${clientFolder}/public/template.html`,
     }),
     new ExtractTextPlugin({
       filename: 'assets/bundle.[hash].css',
