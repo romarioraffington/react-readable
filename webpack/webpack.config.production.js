@@ -9,17 +9,17 @@ module.exports = {
       test: /\.scss$/,
       use: ExtractTextPlugin.extract({
         fallback: 'style-loader',
-        use: [{
-          loader: 'css-loader',
-          query: {
-            modules: true,
-            sourceMap: true,
-            importLoaders: 3,
-            localIdentName: '[name]__[local]___[hash:base64:5]'
+        use: [
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: () => ([
+                require('autoprefixer')(),
+              ])
+            }
           },
-        },
-        'sass-loader',
-        'postcss-loader',
+          'sass-loader',
         ]
       })
     },
@@ -34,7 +34,6 @@ module.exports = {
     }],
   },
   plugins: [
-    require('autoprefixer'),
     new webpack.optimize.UglifyJsPlugin({
       minimize: true,
       sourceMap: true,

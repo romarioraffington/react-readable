@@ -40,7 +40,6 @@ module.exports = {
     }),
     new ExtractTextPlugin({
       allChunks: true,
-      ignoreOrder: true,
       filename: 'assets/bundle.[hash].css',
       disable: NODE_ENV === 'development',
     }),
