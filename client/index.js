@@ -4,7 +4,7 @@ const chalk = require('chalk');
 const compression = require('compression');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
-const webpackConfig = require('./webpack.config');
+const webpackConfig = require('../webpack.config');
 const pkg = require('../package.json');
 
 const app = express();

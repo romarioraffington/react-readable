@@ -3,16 +3,15 @@ const webpack = require('webpack');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
-require('dotenv').load({
-  path: `${__dirname}/../../.env`,
-});
+require('dotenv').load();
+const clientFolder = `${process.cwd()}/client`;
 
 module.exports = {
   entry: [
-    path.resolve('client/src/index.js'),
+    `${clientFolder}/src/index.js`,
   ],
   output: {
-    path: `${__dirname}/../dist`,
+    path: `${clientFolder}/dist`,
     filename: 'assets/bundle.[hash].js',
     sourceMapFilename: 'assets/bundle.map',
     publicPath: '/',
@@ -23,8 +22,8 @@ module.exports = {
   module: {
     rules: [{
       test: /\.js$/,
-      loader: 'babel-loader',
-      loader: 'source-map-loader',
+      enforce: "pre",
+      use: ['babel-loader', 'source-map-loader'],
       exclude: /node_modules/,
     }],
   },
@@ -34,7 +33,7 @@ module.exports = {
     }),
     new HTMLWebpackPlugin({
       inject: true,
-      template: path.resolve('client/public/template.html'),
+      template: `${clientFolder}/public/template.html`
     }),
     new ExtractTextPlugin({
       filename: 'assets/bundle.[hash].css',
