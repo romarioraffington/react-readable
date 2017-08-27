@@ -4,6 +4,7 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 require('dotenv').load();
+const { NODE_ENV } = process.env;
 const clientFolder = `${process.cwd()}/client`;
 
 module.exports = {
@@ -29,7 +30,7 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+      'process.env.NODE_ENV': JSON.stringify(NODE_ENV),
     }),
     new HTMLWebpackPlugin({
       inject: true,
@@ -37,7 +38,7 @@ module.exports = {
     }),
     new ExtractTextPlugin({
       filename: 'assets/bundle.[hash].css',
-      disable: process.env.NODE_ENV === 'development'
+      disable: NODE_ENV === 'development'
     }),
   ],
 }

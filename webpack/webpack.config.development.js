@@ -2,6 +2,11 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 
+const {
+  PORT,
+  HOST,
+} = process.env;
+
 module.exports = {
   cache: true,
   entry: [
@@ -9,7 +14,7 @@ module.exports = {
   ],
   devServer: {
     inline: true,
-    port: process.env.PORT,
+    port: PORT,
   },
   module: {
     rules: [{
@@ -24,7 +29,7 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new OpenBrowserPlugin({
-       url: `http://${process.env.HOST}:${process.env.PORT}`,
+       url: `http://${HOST}:${PORT}`,
     }),
   ],
 }
