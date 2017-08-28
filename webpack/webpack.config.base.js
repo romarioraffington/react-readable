@@ -25,6 +25,17 @@ module.exports = {
       enforce: "pre",
       use: ['babel-loader', 'source-map-loader'],
       exclude: /node_modules/,
+    },
+    {
+      test: /\.(svg|png|jpg|gif)$/,
+      use: [
+        {
+          loader: 'file-loader',
+          options: {
+            name: 'static/media/[name].[hash:8].[ext]',
+          }  
+        }
+      ]
     }],
   },
   resolve: {
