@@ -19,13 +19,6 @@ if (process.env.NODE_ENV === 'development') {
   }));
 
   app.use(webpackHotMiddleware(compiler));
-  app.get("*", (req, res, next) => {
-    compiler.outputFileSystem.readFile(`${__dirname}/dist/index.html`, (err, html) => {
-      if (err) return next(err);
-      res.set('Content-Type', 'text/html').send(html);
-      next();
-    });
-  });
 } else {
   app.use(compression());
   app.use(express.static('./dist'));
