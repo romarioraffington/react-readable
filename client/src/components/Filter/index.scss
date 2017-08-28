@@ -1,0 +1,36 @@
+@import '../../sass/vars';
+
+.filter-container {
+  color: $grey;
+
+  h3 {
+    text-transform: uppercase;
+    opacity: 0.6;
+    font-size: 0.9em;
+  }
+
+  .filters {
+    margin-top: 40px;
+    font-size: 1.05em;
+  }
+
+  .filter {
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+
+  .slash {
+    margin: 0 8px;
+  }
+
+  .votes {
+    margin-left: 5px;
+    color: $black;
+  }
+
+  .selected {
+    color: $black;
+    font-weight: 600;
+  }
+
+}
