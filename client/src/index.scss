@@ -1,0 +1,40 @@
+@import './sass/vars';
+
+// General
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: $font-family;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: $background_color;
+  color: $black;
+}
+
+.main-container {
+  display: flex;
+  margin: 10% 7%;
+}
+
+.left-container {
+  flex: 1;
+}
+
+.middle-container {
+  flex: 3;
+  display: flex;
+  justify-content: center;
+}
+
+.right-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
