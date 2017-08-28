@@ -1,0 +1,36 @@
+// Helpers
+%image-button {
+  display: block;
+  cursor: pointer;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-size: 0;
+}
+
+// Styles
+.top-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: #FFF;
+  padding: 0 5%;
+  box-shadow: 2px 1px 10px 0 rgba(0, 0, 0, 0.10);
+
+  .logo {
+    @extend %image-button;
+    margin: 0 auto;
+    width: 176px;
+    height: 58px;
+    background-image: url('./images/logo.svg');
+    background-size: 80%;
+  }
+
+  .add-post {
+    @extend %image-button;
+    background-image: url('./images/add-post.svg');
+    width: 50px;
+    height: 51px;
+    background-size: 90%;
+  }
+}
+
