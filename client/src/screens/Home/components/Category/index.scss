@@ -1,0 +1,31 @@
+@import '../../../../sass/vars';
+
+.category-container {
+  h3 {
+    color: $grey;
+    text-transform: uppercase;
+    opacity: 0.6;
+    font-size: 0.9em;
+  }
+
+  ul {
+    padding-left: 15px;
+  }
+
+  li {
+    list-style: none;
+    color: rgba(#000, 0.8);
+    font-weight: 700;
+    margin-bottom: 20px;
+    font-size: 1.2em;
+    cursor: pointer;
+  }
+  
+  .selected {
+    background-color: white;
+    border-radius: 5px;
+    padding: 10px 10px;
+    width: 200px;
+    margin-left: -10px;
+  }
+}
