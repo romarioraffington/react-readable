@@ -1,90 +1,70 @@
 // External Dependencies
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 // Our Dependencies
 import styles from './index.scss';
+import formatTimestamp from 'src/util/formatTimestamp';
+import { fetchPosts } from './model/actions';
+
+// Redux
+const mapStateToProps = ({ screen }) => {
+  const { post } = screen.home;
+  return {
+    posts: post.posts,
+    isFetching: post.isFetching,
+  }
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchPosts: () => dispatch(fetchPosts()),
+});
 
 class Post extends Component {
+  componentWillMount() {
+    this.props.fetchPosts();
+  }
+
   render() {
+    const { posts, isFetching } = this.props;
+    
     return (
-      <div>
-        <div className="post-container">
-          <span className="date">August 12, 2017</span>
-          <div className="card">
-            <div className="meta">
-              <div className="comment-container">
-                <span className="comments-count">10</span>
-              </div>
-              <div className="likes-container">
-                <span className="likes-count">+20</span>
-                <div className="likes-buttons">
-                  <a className="up-vote"></a>
-                  <a className="down-vote"></a>
+      <ul>
+        {!isFetching &&  (
+          posts.map(post => (
+            !post.deleted && (
+              <li key={post.id} className="post-container">
+                <span className="date">{formatTimestamp(post.timestamp)}</span>
+                <div className="card">
+                  <div className="meta">
+                    <div className="likes-container">
+                      <span className="likes-count">
+                        { post.voteScore > 0 ? `+${post.voteScore}`: post.voteScore }
+                      </span>
+                      <div className="likes-buttons">
+                        <a className="up-vote"></a>
+                        <a className="down-vote"></a>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="card-content">
+                    <h2>{post.title}</h2>
+                    <div className="card-details">
+                      <p className="description">{post.body}</p>
+                      <span className="author">by {post.author}</span>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-            <div className="card-content">
-              <h2>Learning Redux in 10 Minutes!</h2>
-              <div className="card-details">
-                <p className="description">Just kidding. It takes more than 10 minutes to learn technology. Lorem..</p>
-                <span className="author">by Jase West</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="post-container">
-          <span className="date">August 12, 2017</span>
-          <div className="card">
-            <div className="meta">
-              <div className="comment-container">
-                <span className="comments-count">10</span>
-              </div>
-              <div className="likes-container">
-                <span className="likes-count">+20</span>
-                <div className="likes-buttons">
-                  <a className="up-vote"></a>
-                  <a className="down-vote"></a>
-                </div>
-              </div>
-            </div>
-            <div className="card-content">
-              <h2>Learning Redux in 10 Minutes!</h2>
-              <div className="card-details">
-                <p className="description">Just kidding. It takes more than 10 minutes to learn technology. Lorem..</p>
-                <span className="author">by Jase West</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="post-container">
-          <span className="date">August 12, 2017</span>
-          <div className="card">
-            <div className="meta">
-              <div className="comment-container">
-                <span className="comments-count">10</span>
-              </div>
-              <div className="likes-container">
-                <span className="likes-count">+20</span>
-                <div className="likes-buttons">
-                  <a className="up-vote"></a>
-                  <a className="down-vote"></a>
-                </div>
-              </div>
-            </div>
-            <div className="card-content">
-              <h2>Learning Redux in 10 Minutes!</h2>
-              <div className="card-details">
-                <p className="description">Just kidding. It takes more than 10 minutes to learn technology. Lorem..</p>
-                <span className="author">by Jase West</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+              </li>
+            )
+          ))
+        )}
+      </ul>
     )
   }
 }
 
-export default Post;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Post);
