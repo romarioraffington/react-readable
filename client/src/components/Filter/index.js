@@ -1,4 +1,4 @@
-// Extneral Dependencies;
+// Extneral Dependencies
 import React from 'react';
 
 // Our Dependencies
@@ -6,7 +6,7 @@ import styles from './index.scss';
 
 export default () => {
   return (
-    <div className='filter-container'>
+    <div className="filter-container">
       <h3>Filter</h3>
       <div className="filters">
         <div className="filter">
