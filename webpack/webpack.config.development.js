@@ -9,8 +9,9 @@ const {
 
 module.exports = {
   cache: true,
+  devtool: 'source-map',
   entry: [
-    'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true'
+    'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=4000&reload=true'
   ],
   devServer: {
     inline: true,
