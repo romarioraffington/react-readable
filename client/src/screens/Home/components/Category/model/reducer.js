@@ -5,7 +5,7 @@ const initialState = {
   categories: [],
   error: null,
 }
-export default function category (state=initialState, action) {
+export default (state=initialState, action) => {
   switch(action.type) {
     case `${FETCH_CATEGORIES}_PENDING`: 
       return {
