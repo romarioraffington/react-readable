@@ -21,8 +21,12 @@ if (process.env.NODE_ENV === 'development') {
   app.use(webpackHotMiddleware(compiler));
 } else {
   app.use(compression());
-  app.use(express.static('./dist'));
-  app.get("*", (req, res) => res.sendFile(`${__dirname}/dist/index.html`));
+  
+  // Serve static assets and make 
+  // all routes go to index.html
+  const distFolder = `${__dirname}/dist`;
+  app.use(express.static(distFolder));
+  app.get("*", (req, res) => res.sendFile(`${distFolder}/index.html`));
 }
 
 app.listen(process.env.PORT, () => {
