@@ -11,7 +11,7 @@ const mapStateToProps = ({ screen }) => {
   const { category } = screen.home;
   return {
     categories: category.categories,
-    isLoading: category.isLoading,
+    isFetching: category.isFetching,
   }
 };
 
@@ -25,13 +25,13 @@ class Category extends Component {
   }
 
   render() {
-    const { categories, isLoading } = this.props;
+    const { categories, isFetching } = this.props;
     return (
       <div className="category-container">
         <h3>Categories</h3>
         <ul>
           <li className="category selected" key="all">All</li>
-          {!isLoading && (
+          {!isFetching && (
             categories.map(category => 
               <li key={category.path} className="category">{category.name}</li>
             )

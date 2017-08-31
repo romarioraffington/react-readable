@@ -1,7 +1,7 @@
 import { FETCH_CATEGORIES } from './constants';
 
 const initialState = {
-  isLoading: false,
+  isFetching: false,
   categories: [],
   error: null,
 }
@@ -10,20 +10,20 @@ export default (state=initialState, action) => {
     case `${FETCH_CATEGORIES}_PENDING`: 
       return {
         ...state,
-        isLoading: true,
+        isFetching: true,
       };
 
     case `${FETCH_CATEGORIES}_FULFILLED`:
       return {
         ...state,
-        isLoading: false,
+        isFetching: false,
         categories: action.payload,
       };
 
     case `${FETCH_CATEGORIES}_REJECTED`:
       return {
         ...state,
-        isLoading: false,
+        isFetching: false,
         error: action.payload,
       };
 
