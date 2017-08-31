@@ -1,6 +1,4 @@
-import {
-  FETCH_CATEGORIES,
-} from './constants';
+import { FETCH_CATEGORIES } from './constants';
 
 const initialState = {
   isLoading: false,
