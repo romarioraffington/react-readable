@@ -3,8 +3,17 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 require('dotenv').load();
-const { NODE_ENV } = process.env;
 const clientFolder = `${process.cwd()}/client`;
+
+// Pull out variables to define with 
+// webpack to be used in the api file
+const { 
+  NODE_ENV, 
+  SERVER_PROTOCOL,
+  SERVER_HOST,
+  SERVER_PORT,
+  SERVER_API_TIMEOUT,
+} = process.env;
 
 module.exports = {
   entry: [
@@ -43,7 +52,13 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(NODE_ENV),
+      "process.env": {
+        NODE_ENV: JSON.stringify(NODE_ENV),
+        SERVER_PROTOCOL: JSON.stringify(SERVER_PROTOCOL),
+        SERVER_HOST: JSON.stringify(SERVER_HOST),
+        SERVER_PORT: JSON.stringify(SERVER_PORT),
+        SERVER_API_TIMEOUT: JSON.stringify(SERVER_API_TIMEOUT),
+      }
     }),
     new HTMLWebpackPlugin({
       inject: true,
