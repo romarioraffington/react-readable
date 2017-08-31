@@ -12,6 +12,8 @@ The following endpoints are available:
 `GET /categories`  
  Get all of the categories available for the app.
 
+### Posts
+
 `GET /:category/posts`  
  Get all of the posts for a particular category   
 
@@ -61,6 +63,8 @@ The following endpoints are available:
   `owner`: String  
   `parentId`: Should match a post id in the database.  
 
+### Comments 
+
 `GET /comments/:id`  
   Get the details for a single comment  
 
@@ -75,4 +79,4 @@ The following endpoints are available:
   `body`: String  
 
 `DELETE /comments/:id`  
-Sets a comment's deleted flag to 'true'  
+  Sets a comment's deleted flag to 'true'  
