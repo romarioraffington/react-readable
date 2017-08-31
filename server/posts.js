@@ -6,22 +6,56 @@ const defaultData = {
   "8xf0y6ziyjabvozdd253nd": {
     id: '8xf0y6ziyjabvozdd253nd',
     timestamp: 1467166872634,
-    title: 'Udacity is the best place to learn React',
-    body: 'Everyone says so after all.',
-    author: 'thingtwo',
+    title: 'Testing React Apps 👨‍🔬',
+    body: 'Testing is an infinite process of comparing the invisible to the ambiguous in order to avoid the unthinkable happening',
+    author: 'Romario Raffington',
     category: 'react',
-    voteScore: 6,
+    voteScore: -10,
     deleted: false 
   },
+
+  "12345xf0y6ziyjabvozdd253nd": {
+    id: '12345xf0y6ziyjabvozdd253nd',
+    timestamp: 1504213443368,
+    title: 'Udacity + React = ❤️',
+    body: 'React is completely transforming Front-End Development. Master this powerful UI library from Facebook with Udacity',
+    author: 'Udacity',
+    category: 'react',
+    voteScore: 30,
+    deleted: false 
+  },
+
   "6ni6ok3ym7mf1p33lnez": {
     id: '6ni6ok3ym7mf1p33lnez',
     timestamp: 1468479767190,
     title: 'Learn Redux in 10 minutes!',
     body: 'Just kidding. It takes more than 10 minutes to learn technology.',
-    author: 'thingone',
+    author: 'Micheal Jackson',
     category: 'redux',
-    voteScore: -5,
+    voteScore: 6,
     deleted: false
+  },
+
+  "12ni6ok3ym7mf1p33lnez": {
+    id: '12ni6ok3ym7mf1p33lnez',
+    timestamp: 1498479767190,
+    title: 'Udacity is Awesome 😍',
+    body: 'The goal of this program is to equip you with the skills and experience you\'ll need to become a professional React developer.',
+    author: 'Udacity',
+    category: 'Udacity',
+    voteScore: 20,
+    deleted: false
+  },
+
+  "12ni6ok3ym7mf1p33lnasas22": {
+    id: '12ni6ok3ym7mf1p33lnasas22',
+    timestamp: 1498499767190,
+    title: 'This Message is Deleted ☹️',
+    body: 'This message is deleted, it will not be shown on screen.',
+    author: 'Udacity',
+    category: 'Udacity',
+    voteScore: 20,
+    deleted: true
   }
 }
 
