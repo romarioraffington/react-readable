@@ -14,12 +14,15 @@
 
   li {
     list-style: none;
-    color: rgba(#000, 0.8);
-    font-weight: 700;
     margin-bottom: 20px;
-    font-size: 1.2em;
-    cursor: pointer;
-    text-transform: capitalize,
+
+    a {
+      font-size: 1.2em;
+      font-weight: 700;
+      text-transform: capitalize;
+      text-decoration: none;
+      color: rgba(#000, 0.8);
+    }
   }
   
   .selected {

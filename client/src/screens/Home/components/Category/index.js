@@ -1,10 +1,12 @@
 // Extneral Dependencies;
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import classNames from 'classnames';
 
 // Our Dependencies
 import styles from './index.scss';
-import { fetchCategories } from './model/actions';
+import { fetchCategories, updateCategory } from './model/actions';
 
 // Redux
 const mapStateToProps = ({ screen }) => {
@@ -17,23 +19,37 @@ const mapStateToProps = ({ screen }) => {
 
 const mapDispatchToProps = (dispatch) => ({
   fetchCategories: () => dispatch(fetchCategories()),
+  updateCategory: (path) => dispatch(updateCategory(path)),
 });
 
 class Category extends Component {
   componentWillMount() {
     this.props.fetchCategories();
   }
+  
+  updateClass(path) {
+    this.props.updateCategory(path);
+    this.forceUpdate();
+  }
 
   render() {
-    const { categories, isFetching } = this.props;
+    const { 
+      categories, 
+      isFetching,
+      selected,
+     } = this.props;
+
     return (
       <div className="category-container">
         <h3>Categories</h3>
         <ul>
-          <li className="category selected" key="all">All</li>
           {!isFetching && (
-            categories.map(category => 
-              <li key={category.path} className="category">{category.name}</li>
+            categories.map(({ path, name }) => 
+              <li key={path} onClick={() => this.updateClass(path)} className={classNames('category', {
+                'selected': path === location.pathname.toLowerCase()
+              })}>
+                <Link to={path}>{name}</Link>
+              </li>
             )
           )}
         </ul>
