@@ -3,9 +3,11 @@ import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux'
 
 // Our Dependencies
-import ScreenReducer from 'src/screens/model/reducer';
+import category from './Category/reducer';
+import post from './Post/reducer';
 
 export default combineReducers({
-  screen: ScreenReducer,
   router: routerReducer,
+  category,
+  post,
 });

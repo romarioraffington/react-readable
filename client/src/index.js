@@ -7,10 +7,9 @@ import createHistory from 'history/createBrowserHistory';
 
 // Our Components
 import Home from './screens/Home';
-import Post from 'src/components/Post';
 
 // Our Dependencies
-import store from './app/model/store';
+import store from './models/store';
 import styles from './index.scss';
 
 ReactDOM.render(

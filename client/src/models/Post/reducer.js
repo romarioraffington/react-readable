@@ -6,7 +6,7 @@ const initialState = {
   error: null,
 }
 
-export default function posts (state=initialState, action) {
+export default function post (state=initialState, action) {
   switch(action.type) {
     case `${FETCH_POSTS}_PENDING`: 
       return {
