@@ -9,11 +9,12 @@ import styles from './index.scss';
 import { fetchCategories } from './model/actions';
 
 // Redux
-const mapStateToProps = ({ screen }) => {
+const mapStateToProps = ({ screen, router }) => {
   const { category } = screen.home;
   return {
     categories: category.categories,
     isFetching: category.isFetching,
+    pathname: router.location.pathname,
   }
 };
 
@@ -33,7 +34,6 @@ class Category extends Component {
       selected,
      } = this.props;
 
-    const currentPath = location.pathname.toLowerCase();
     return (
       <div className="category-container">
         <h3>Categories</h3>
@@ -42,11 +42,7 @@ class Category extends Component {
             {!isFetching && (
               categories.map(({ path, name }) => 
                 <li key={name}>
-                  <NavLink 
-                    exact to={path} 
-                    activeClassName="selected"
-                    onClick={() => this.forceUpdate()}
-                  >
+                  <NavLink exact to={path} activeClassName="selected">
                     {name}
                   </NavLink>
                 </li>
@@ -61,11 +57,5 @@ class Category extends Component {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
-  undefined, { 
-    // View does not update on route change 
-    // due to connect() "issue"
-    // See more: https://github.com/reactjs/react-redux/blob/master/docs/troubleshooting.md
-    pure: false 
-  }
+  mapDispatchToProps
 )(Category);
