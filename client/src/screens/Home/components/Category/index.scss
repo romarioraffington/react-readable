@@ -14,7 +14,8 @@
 
   li {
     list-style: none;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
+    padding: 10px 10px;
 
     a {
       font-size: 1.2em;
@@ -28,8 +29,6 @@
   .selected {
     background-color: white;
     border-radius: 5px;
-    padding: 10px 10px;
     width: 200px;
-    margin-left: -10px;
   }
 }
