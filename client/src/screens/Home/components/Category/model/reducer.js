@@ -1,13 +1,11 @@
 import { 
   FETCH_CATEGORIES,
-  UPDATE_SELECTED_CATEGORY,
 } from './constants';
 
 const initialState = {
   isFetching: false,
   categories: [],
   error: null,
-  selected: '/',
 }
 
 export default (state=initialState, action) => {
@@ -30,12 +28,6 @@ export default (state=initialState, action) => {
         ...state,
         isFetching: false,
         error: action.payload,
-      };
-
-    case UPDATE_SELECTED_CATEGORY:
-      return {
-        ...state,
-        selected: action.payload,
       };
 
     default: 

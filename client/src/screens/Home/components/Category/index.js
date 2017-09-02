@@ -1,12 +1,12 @@
 // Extneral Dependencies;
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import classNames from 'classnames';
 
 // Our Dependencies
 import styles from './index.scss';
-import { fetchCategories, updateCategory } from './model/actions';
+import { fetchCategories } from './model/actions';
 
 // Redux
 const mapStateToProps = ({ screen }) => {
@@ -19,17 +19,11 @@ const mapStateToProps = ({ screen }) => {
 
 const mapDispatchToProps = (dispatch) => ({
   fetchCategories: () => dispatch(fetchCategories()),
-  updateCategory: (path) => dispatch(updateCategory(path)),
 });
 
 class Category extends Component {
   componentWillMount() {
     this.props.fetchCategories();
-  }
-  
-  updateClass(path) {
-    this.props.updateCategory(path);
-    this.forceUpdate();
   }
 
   render() {
@@ -39,20 +33,27 @@ class Category extends Component {
       selected,
      } = this.props;
 
+    const currentPath = location.pathname.toLowerCase();
     return (
       <div className="category-container">
         <h3>Categories</h3>
-        <ul>
-          {!isFetching && (
-            categories.map(({ path, name }) => 
-              <li key={path} onClick={() => this.updateClass(path)} className={classNames('category', {
-                'selected': path === location.pathname.toLowerCase()
-              })}>
-                <Link to={path}>{name}</Link>
-              </li>
-            )
-          )}
-        </ul>
+        <nav>
+          <ul>
+            {!isFetching && (
+              categories.map(({ path, name }) => 
+                <li key={name}>
+                  <NavLink 
+                    exact to={path} 
+                    activeClassName="selected"
+                    onClick={() => this.forceUpdate()}
+                  >
+                    {name}
+                  </NavLink>
+                </li>
+              )
+            )}
+          </ul>
+        </nav>
       </div>
     )
   }
@@ -60,5 +61,11 @@ class Category extends Component {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
+  undefined, { 
+    // View does not update on route change 
+    // due to connect() "issue"
+    // See more: https://github.com/reactjs/react-redux/blob/master/docs/troubleshooting.md
+    pure: false 
+  }
 )(Category);

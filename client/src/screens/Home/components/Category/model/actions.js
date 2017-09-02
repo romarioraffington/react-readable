@@ -11,10 +11,3 @@ export function fetchCategories() {
     payload: api.get('/categories').then(res => res.data.categories),
   }
 }
-
-export function updateCategory(path) {
-  return {
-    type: UPDATE_SELECTED_CATEGORY,
-    payload: path,
-  }
-}
