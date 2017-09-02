@@ -15,9 +15,10 @@
   li {
     list-style: none;
     margin-bottom: 5px;
-    padding: 10px 10px;
 
     a {
+      display: block;
+      padding: 10px 10px;
       font-size: 1.2em;
       font-weight: 700;
       text-transform: capitalize;
