@@ -1,7 +1,6 @@
 // External Dependencies
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import parallel from 'async/parallel'; 
 
 // Our Components
 import PostList from 'src/components/PostList'
@@ -65,7 +64,13 @@ class Home extends Component {
           p.category.toLowerCase() === pathname.replace('/','')
         )
      }
-     
+
+    // Sort Post ordered by voteScore 
+    // (highest score first)    
+     filteredPosts = filteredPosts.sort((a, b) => (
+       b.voteScore - a.voteScore
+    ));
+
     return (
       <div className="container">
         <Header />
