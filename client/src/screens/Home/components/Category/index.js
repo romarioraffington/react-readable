@@ -22,5 +22,4 @@ export default ({ categories, isFetching }) => (
       </ul>
     </nav>
   </div>
-
 )

@@ -9,7 +9,7 @@ import createHistory from 'history/createBrowserHistory';
 import Home from './screens/Home';
 
 // Our Dependencies
-import store from './models/store';
+import store from './store';
 import styles from './index.scss';
 
 ReactDOM.render(

@@ -5,20 +5,20 @@ import { connect } from 'react-redux';
 // Our Components
 import PostList from 'src/components/PostList'
 import Header from 'src/components/Header';
-import Category from 'src/components/Category';
+import Category from './components/Category';
+import Filter from './components/Filter';
 import Post from 'src/components/Post';
-import Filter from 'src/components/Filter';
 
 // Other Dependencies
 import { fetchPosts } from 'src/models/Post/actions';
-import { fetchCategories } from 'src/models/Category/actions';
+import { fetchCategories } from './components/Category/model/actions';
 
 // Redux
-const mapStateToProps = ({ post, category, router }) => ({
+const mapStateToProps = ({ post, home, router }) => ({
   posts: post.posts,
   isFetchingPosts: post.isFetching,
-  categories: category.categories, 
-  isFetchingCategories: category.isFetching, 
+  categories: home.category.categories, 
+  isFetchingCategories: home.category.isFetching, 
 
   // Used to render the Home component
   // and it's children on route change
@@ -40,13 +40,6 @@ class Home extends Component {
     this.props.onLoad();
   }
   
-
-  // Get all Posts when Home is rendered
-  // Based on route change filter posts
-  // Based on filter, filter post and pass through
-  // Post is a dumb component and should just render a post
-  // PostList is a dumb component that should just render a lists of posts
-
   render() {
     const { 
       posts, 
