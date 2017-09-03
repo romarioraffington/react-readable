@@ -8,6 +8,7 @@ const webpackConfig = require('../webpack.config');
 const pkg = require('../package.json');
 
 const app = express();
+const distFolder = `${__dirname}/dist`;
 const compiler = webpack(webpackConfig);
 
 if (process.env.NODE_ENV === 'development') {
@@ -19,12 +20,23 @@ if (process.env.NODE_ENV === 'development') {
   }));
 
   app.use(webpackHotMiddleware(compiler));
+
+  // Serve all requests to index.html
+  // to allow React to handle all the
+  // routing
+  app.get("*", (req, res, next) => {
+    compiler.outputFileSystem.readFile(`${distFolder}/index.html`, (err, html) => {
+      if (err) return next(err);
+      res.set('Content-Type', 'text/html').send(html);
+    });
+  });
+
 } else {
   app.use(compression());
   
   // Serve static assets and make 
   // all routes go to index.html
-  const distFolder = `${__dirname}/dist`;
+  app.use(express.static(distFolder));
   app.use(express.static(distFolder));
   app.get("*", (req, res) => res.sendFile(`${distFolder}/index.html`));
 }
