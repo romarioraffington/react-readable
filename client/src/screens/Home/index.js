@@ -25,7 +25,7 @@ const mapStateToProps = ({ post, category, router }) => ({
   // and it's children on route change
   // as the NavLink activeClassName is 
   // dependent on rerenders
-  router: router, 
+  pathname: router.location.pathname, 
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -41,21 +41,30 @@ class Home extends Component {
     this.props.onLoad();
   }
   
+
   // Get all Posts when Home is rendered
   // Based on route change filter posts
   // Based on filter, filter post and pass through
   // Post is a dumb component and should just render a post
   // PostList is a dumb component that should just render a lists of posts
 
-  // Questions
-  //
   render() {
     const { 
       posts, 
       isFetchingPosts,
       categories,
       isFetchingCategories,
+      pathname,
      } = this.props;
+
+     // Filter Posts based on the 
+     // pathname returned by react-router-redux
+     let filteredPosts = posts;
+     if (pathname !== '/') {
+        filteredPosts = posts.filter(p => 
+          p.category.toLowerCase() === pathname.replace('/','')
+        )
+     }
      
     return (
       <div className="container">
@@ -64,11 +73,12 @@ class Home extends Component {
           <div className="left-container">
             <Category 
               categories={categories}
-              isFetching={isFetchingCategories} />
+              isFetching={isFetchingCategories}
+            />
           </div>
           <div className="middle-container">
             <PostList
-              posts={posts}
+              posts={filteredPosts}
               isFetching={isFetchingPosts}
             />
           </div>
