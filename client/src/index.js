@@ -6,7 +6,7 @@ import { ConnectedRouter } from 'react-router-redux';
 import createHistory from 'history/createBrowserHistory';
 
 // Our Components
-import Home from './screens/Home';
+import App from 'src/components';
 
 // Our Dependencies
 import store from './store';
@@ -15,7 +15,7 @@ import styles from './index.scss';
 ReactDOM.render(
   <Provider store={store}> 
     <ConnectedRouter history={createHistory()}>
-      <Home />
+      <App />
     </ConnectedRouter>
   </Provider>,
   document.getElementById('app')
