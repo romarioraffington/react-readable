@@ -1,4 +1,4 @@
-@import '../../../../app/sass/vars';
+@import '../../app/sass/vars';
 
 .filter-container {
   color: $grey;
@@ -7,16 +7,34 @@
     text-transform: uppercase;
     opacity: 0.6;
     font-size: 0.9em;
+    margin-bottom: 20px;
   }
 
-  .filters {
-    margin-top: 40px;
+  ul {
     font-size: 1.05em;
-  }
+    list-style: none;
+    display: flex;
+    padding-left: 0px;
+    margin: 0 0 10px 0;
 
-  .filter {
-    margin-bottom: 10px;
-    cursor: pointer;
+    input {
+      visibility: hidden;
+      display: none;
+    }
+
+    label {
+      cursor: pointer;
+    }
+
+    input:checked + label {
+      color:rgba($black, 0.8);;
+      font-weight: 600;
+    }
+  }
+  
+  .separator {
+    opacity: 0.15;
+    width: 90%;
   }
 
   .slash {
@@ -27,10 +45,4 @@
     margin-left: 5px;
     color: $black;
   }
-
-  .selected {
-    color:rgba($black, 0.8);;
-    font-weight: 600;
-  }
-
 }

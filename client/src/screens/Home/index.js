@@ -6,11 +6,11 @@ import { connect } from 'react-redux';
 import PostList from 'src/components/PostList'
 import Header from 'src/components/Header';
 import Category from './components/Category';
-import Filter from './components/Filter';
+import Filter from 'src/components/Filter';
 import Post from 'src/components/Post';
 
-// Other Dependencies
-import { fetchPosts } from 'src/models/Post/actions';
+// Our Actions
+import { fetchPosts, filterPost } from 'src/components/Post/model/actions';
 import { fetchCategories } from './components/Category/model/actions';
 
 // Redux
@@ -19,25 +19,21 @@ const mapStateToProps = ({ post, home, router }) => ({
   isFetchingPosts: post.isFetching,
   categories: home.category.categories, 
   isFetchingCategories: home.category.isFetching, 
-
-  // Used to render the Home component
-  // and it's children on route change
-  // as the NavLink activeClassName is 
-  // dependent on rerenders
   pathname: router.location.pathname, 
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  onLoad: () => {
+  onMount: () => {
     dispatch(fetchPosts());
     dispatch(fetchCategories());
-  }
+  },
+  onFilterClick: (order, by) => dispatch(filterPost(order, by)),
 })
 
 // Component
 class Home extends Component {
   componentWillMount() {
-    this.props.onLoad();
+    this.props.onMount();
   }
   
   render() {
@@ -47,10 +43,11 @@ class Home extends Component {
       categories,
       isFetchingCategories,
       pathname,
+      onFilterClick
      } = this.props;
 
-     // Filter Posts based on the 
-     // pathname returned by react-router-redux
+     // Filter Posts based on the pathname 
+     // returned by react-router-redux
      let filteredPosts = posts;
      if (pathname !== '/') {
         filteredPosts = posts.filter(p => 
@@ -58,11 +55,9 @@ class Home extends Component {
         )
      }
 
-    // Sort Post ordered by voteScore 
-    // (highest score first)    
-     filteredPosts = filteredPosts.sort((a, b) => (
-       b.voteScore - a.voteScore
-    ));
+     const filterClick = (order, by) => {
+      onFilterClick(order, by);
+    }
 
     return (
       <div className="container">
@@ -81,7 +76,7 @@ class Home extends Component {
             />
           </div>
           <div className="right-container">
-            <Filter />
+            <Filter onFilterClick={filterClick} />
           </div>
         </div>
       </div> 
