@@ -1,3 +1,9 @@
+/**
+* Format timestamps in a more user friendly date format
+* @param  {Date} timestamp - Timestamp to be formated
+* @return {String} The formatted timestamp
+*/
+
 export default (timestamp) => {
   const monthNames = [
     'January', 'February', 'March',
