@@ -5,7 +5,7 @@ let db = {}
 const defaultData = {
   "8xf0y6ziyjabvozdd253nd": {
     id: '8xf0y6ziyjabvozdd253nd',
-    timestamp: 1467166872634,
+    timestamp: 1504491657097,
     title: 'Testing React Apps 👨‍🔬',
     body: 'Testing is an infinite process of comparing the invisible to the ambiguous in order to avoid the unthinkable happening',
     author: 'Romario Raffington',
@@ -16,7 +16,7 @@ const defaultData = {
 
   "12345xf0y6ziyjabvozdd253nd": {
     id: '12345xf0y6ziyjabvozdd253nd',
-    timestamp: 1504213443368,
+    timestamp: 1468479767190,
     title: 'Udacity + React = ❤️',
     body: 'React is completely transforming Front-End Development. Master this powerful UI library from Facebook with Udacity',
     author: 'Udacity',
@@ -27,7 +27,7 @@ const defaultData = {
 
   "6ni6ok3ym7mf1p33lnez": {
     id: '6ni6ok3ym7mf1p33lnez',
-    timestamp: 1468479767190,
+    timestamp: 1504213443368,
     title: 'Learn Redux in 10 minutes!',
     body: 'Just kidding. It takes more than 10 minutes to learn technology.',
     author: 'Micheal Jackson',
@@ -43,7 +43,7 @@ const defaultData = {
     body: 'The goal of this program is to equip you with the skills and experience you\'ll need to become a professional React developer.',
     author: 'Udacity',
     category: 'Udacity',
-    voteScore: 20,
+    voteScore: 12,
     deleted: false
   },
 
