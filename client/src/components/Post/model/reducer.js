@@ -4,12 +4,14 @@ import {
   VOTE_POST,
 } from './constants';
 
-import filter from 'src/app/util/filter';
-
 const initialState = {
   isFetchingPosts: false,
   isUpdatingLikes: false,
   posts: [],
+  filter: {
+    order: 'asc', // options: asc, desc
+    by: 'voteScore', // options: voteScore, timestamp
+  },
   error: null,
 }
 
@@ -36,13 +38,13 @@ export default function post (state=initialState, action) {
       };
 
     case FILTER_POSTS:
+      const { order, by } = action;
       return {
         ...state,
-        posts: filter(
-          state.posts.concat(),
-          action.order,
-          action.by,
-        ),
+        filter: {
+          order,
+          by,
+        },
       };
 
     case `${VOTE_POST}_PENDING`: 

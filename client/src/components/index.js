@@ -12,6 +12,7 @@ import { fetchCategories } from 'src/screens/Home/components/Category/model/acti
 // Redux
 const mapStateToProps = ({ post, home, router }) => ({
   posts: post.posts,
+  postFilter: post.filter,
   isFetchingPosts: post.isFetching,
   categories: home.category.categories,
   isFetchingCategories: home.category.isFetching,
@@ -41,6 +42,7 @@ class App extends Component {
       pathname,
       onFilterClick,
       onClickVote,
+      postFilter,
      } = this.props;
 
     return (
@@ -52,6 +54,7 @@ class App extends Component {
         onFilterClick={onFilterClick}
         onClickVote={onClickVote}
         pathname={pathname}
+        postFilter={postFilter}
       />
     )
   }
