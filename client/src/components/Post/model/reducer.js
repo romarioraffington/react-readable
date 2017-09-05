@@ -1,12 +1,14 @@
 import { 
   FETCH_POSTS, 
   FILTER_POSTS,
+  VOTE_POST,
 } from './constants';
 
 import filter from 'src/app/util/filter';
 
 const initialState = {
-  isFetching: false,
+  isFetchingPosts: false,
+  isUpdatingLikes: false,
   posts: [],
   error: null,
 }
@@ -16,20 +18,20 @@ export default function post (state=initialState, action) {
     case `${FETCH_POSTS}_PENDING`: 
       return {
         ...state,
-        isFetching: true,
+        isFetchingPosts: true,
       };
 
     case `${FETCH_POSTS}_FULFILLED`:
       return {
         ...state,
-        isFetching: false,
+        isFetchingPosts: false,
         posts: action.payload,
       };
 
     case `${FETCH_POSTS}_REJECTED`:
       return {
         ...state,
-        isFetching: false,
+        isFetchingPosts: false,
         error: action.payload,
       };
 
@@ -43,6 +45,29 @@ export default function post (state=initialState, action) {
         ),
       };
 
+    case `${VOTE_POST}_PENDING`: 
+      return {
+        ...state,
+        isUpdatingLikes: true,
+      };
+
+    case `${VOTE_POST}_FULFILLED`:
+      const { posts } = state;
+      const { id, voteScore } = action.payload;
+
+      return {
+        ...state,
+        isUpdatingLikes: false,
+        posts: posts.map(p => p.id === id ? { ...p, voteScore } : p),
+      };
+
+    case `${VOTE_POST}_REJECTED`:
+      return {
+        ...state,
+        isUpdatingLikes: false,
+        error: action.payload,
+      };
+ 
     default: 
       return state;
   }

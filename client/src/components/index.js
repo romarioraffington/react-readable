@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import Home from 'src/screens/Home';
 
 // Our Actions
-import { fetchPosts, filterPost } from 'src/components/Post/model/actions';
+import { fetchPosts, filterPost, votePost } from 'src/components/Post/model/actions';
 import { fetchCategories } from 'src/screens/Home/components/Category/model/actions';
 
 // Redux
@@ -24,6 +24,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(fetchCategories());
   },
   onFilterClick: (order, by) => dispatch(filterPost(order, by)),
+  onClickVote: (id, option) => dispatch(votePost(id, option)),
 });
 
 class App extends Component {
@@ -38,12 +39,9 @@ class App extends Component {
       categories,
       isFetchingCategories,
       pathname,
-      onFilterClick
+      onFilterClick,
+      onClickVote,
      } = this.props;
-
-     const filterClick = (order, by) => {
-      onFilterClick(order, by);
-    }
 
     return (
       <Home 
@@ -52,6 +50,7 @@ class App extends Component {
         categories={categories}
         isFetchingCategories={isFetchingCategories}
         onFilterClick={onFilterClick}
+        onClickVote={onClickVote}
         pathname={pathname}
       />
     )

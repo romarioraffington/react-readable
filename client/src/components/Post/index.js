@@ -5,7 +5,7 @@ import React from 'react';
 import styles from './index.scss';
 import formatTimestamp from 'src/app/util/formatTimestamp';
 
-export default ({ post }) => (
+export default ({ post, onClickVote }) => (
   <li key={post.id} className="post-container">
     <span className="date">{formatTimestamp(post.timestamp)}</span>
     <div className="card">
@@ -15,8 +15,8 @@ export default ({ post }) => (
             {post.voteScore > 0 ? `+${post.voteScore}` : post.voteScore}
           </span>
           <div className="likes-buttons">
-            <a className="up-vote"></a>
-            <a className="down-vote"></a>
+            <span onClick={() => onClickVote(post.id, 'upVote')} className="up-vote"></span>
+            <span onClick={() => onClickVote(post.id, 'downVote')} className="down-vote"></span>
           </div>
         </div>
       </div>

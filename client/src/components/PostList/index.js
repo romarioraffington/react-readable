@@ -4,13 +4,17 @@ import React from 'react';
 // Our Components
 import Post from '../Post';
 
-export default ({ posts, isFetching }) => (
+export default ({ posts, isFetching, onClickVote }) => (
   <ul>
     { 
       !isFetching && ( 
         posts.map(post => (
           !post.deleted  && (
-            <Post key={post.id} post={post} /> 
+            <Post 
+              key={post.id} 
+              post={post} 
+              onClickVote={onClickVote} 
+            /> 
           )
         ))
       )

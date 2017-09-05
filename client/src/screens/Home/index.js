@@ -20,6 +20,7 @@ class Home extends Component {
       isFetchingCategories,
       pathname,
       onFilterClick,
+      onClickVote,
       } = this.props;
 
     // Filter Posts based on the pathname 
@@ -44,6 +45,7 @@ class Home extends Component {
             <PostList
               posts={filteredPosts}
               isFetching={isFetchingPosts}
+              onClickVote={onClickVote}
             />
           </div>
           <div className="right-container">

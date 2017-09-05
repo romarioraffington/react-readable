@@ -2,6 +2,7 @@
 import { 
   FETCH_POSTS, 
   FILTER_POSTS,
+  VOTE_POST,
 } from './constants';
 
 import api from 'src/api';
@@ -19,5 +20,12 @@ export function filterPost(order, by) {
     type: FILTER_POSTS,
     order,
     by,
+  }
+}
+
+export function votePost(id, option) {
+  return {
+    type: VOTE_POST,
+    payload: api.post(`/posts/${id}`, { option: option }).then(res => res.data)
   }
 }
