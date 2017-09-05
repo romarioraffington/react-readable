@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import Home from 'src/screens/Home';
 
 // Our Actions
-import { fetchPosts, filterPost, votePost } from 'src/components/Post/model/actions';
+import { fetchPosts, filterPost, votePost } from 'src/models/Post/actions';
 import { fetchCategories } from 'src/screens/Home/components/Category/model/actions';
 
 // Redux
