@@ -25,6 +25,8 @@ class Home extends Component {
       onClickVote,
       pathname,
       postFilter,
+      togglePostModal,
+      isPostModalOpen,
       } = this.props;
 
     // Filter Posts based on the
@@ -42,7 +44,10 @@ class Home extends Component {
 
     return (
       <div className="container">
-        <Header />
+        <Header 
+          togglePostModal={togglePostModal}
+          isPostModalOpen={isPostModalOpen}
+        />
         <div className="main-container">
           <div className="left-container">
             <Category

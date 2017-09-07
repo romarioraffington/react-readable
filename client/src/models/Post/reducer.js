@@ -2,6 +2,7 @@ import {
   FETCH_POSTS, 
   FILTER_POSTS,
   VOTE_POST,
+  TOGGLE_ADD_POST_MODAL,
 } from './constants';
 
 const initialState = {
@@ -12,6 +13,7 @@ const initialState = {
     order: 'asc', // options: asc, desc
     by: 'voteScore', // options: voteScore, timestamp
   },
+  isPostModalOpen: false,
   error: null,
 }
 
@@ -69,6 +71,12 @@ export default function post (state=initialState, action) {
         isUpdatingLikes: false,
         error: action.payload,
       };
+
+    case TOGGLE_ADD_POST_MODAL:
+      return {
+        ...state,
+        isPostModalOpen: action.payload,
+      }
  
     default: 
       return state;

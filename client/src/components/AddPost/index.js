@@ -9,7 +9,7 @@ export default ({ isAddPostModalOpen }) => {
   return (
     <div>
       <Modal
-        isOpen={true}
+        isOpen={isAddPostModalOpen}
         contentLabel="Create a Post"
         className={{
           afterOpen: 'add-post-modal',
@@ -22,13 +22,13 @@ export default ({ isAddPostModalOpen }) => {
         </div>
         <form>
           <fieldset>
-            <input type="text" name="title" placeholder="Enter a Title "/>
+            <input type="text" name="title" placeholder="Enter a Title" required/>
           </fieldset>
           <fieldset>
-            <input type="text" name="author" placeholder="Enter the Author"/>
+            <input type="text" name="author" placeholder="Enter the Author" required/>
           </fieldset>
           <fieldset>
-            <textarea name="body" placeholder="Write your Post..."/>
+            <textarea name="body" placeholder="Write your Post..." required/>
           </fieldset>
           <button type="submit" className="button button--primary">Post 👏</button>
         </form>

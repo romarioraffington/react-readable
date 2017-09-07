@@ -3,6 +3,7 @@ import {
   FETCH_POSTS, 
   FILTER_POSTS,
   VOTE_POST,
+  TOGGLE_ADD_POST_MODAL,
 } from './constants';
 
 import api from 'src/api';
@@ -27,5 +28,12 @@ export function votePost(id, option) {
   return {
     type: VOTE_POST,
     payload: api.post(`/posts/${id}`, { option: option }).then(res => res.data)
+  }
+}
+
+export function togglePostModal(isOpen) {
+  return {
+    type: TOGGLE_ADD_POST_MODAL,
+    payload: isOpen,
   }
 }

@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import Home from 'src/screens/Home';
 
 // Our Actions
-import { fetchPosts, filterPost, votePost } from 'src/models/Post/actions';
+import { fetchPosts, filterPost, votePost, togglePostModal } from 'src/models/Post/actions';
 import { fetchCategories } from 'src/screens/Home/components/Category/model/actions';
 
 // Redux
@@ -17,6 +17,7 @@ const mapStateToProps = ({ post, home, router }) => ({
   categories: home.category.categories,
   isFetchingCategories: home.category.isFetching,
   pathname: router.location.pathname,
+  isPostModalOpen: post.isPostModalOpen,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -26,6 +27,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onFilterClick: (order, by) => dispatch(filterPost(order, by)),
   onClickVote: (id, option) => dispatch(votePost(id, option)),
+  togglePostModal: (isOpen) => dispatch(togglePostModal(isOpen)),
 });
 
 class App extends Component {
@@ -43,6 +45,9 @@ class App extends Component {
       onFilterClick,
       onClickVote,
       postFilter,
+      openAddPostModal, 
+      togglePostModal,
+      isPostModalOpen,
      } = this.props;
 
     return (
@@ -55,6 +60,8 @@ class App extends Component {
         onClickVote={onClickVote}
         pathname={pathname}
         postFilter={postFilter}
+        togglePostModal={togglePostModal}
+        isPostModalOpen={isPostModalOpen}
       />
     )
   }
