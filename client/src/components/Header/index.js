@@ -9,11 +9,11 @@ import AddPost from 'src/components/AddPost';
 export default ({ togglePostModal, isPostModalOpen }) => (
   <div className='top-container'>
     <Link to='/' className='logo'>Readable</Link>
-    <a 
+    <button
       onClick={() => togglePostModal(true)}
       className="add-post">
         Add Post
-    </a>
+    </button>
     <AddPost isAddPostModalOpen={isPostModalOpen} />
   </div>   
 )
