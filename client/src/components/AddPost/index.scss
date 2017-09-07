@@ -1,0 +1,90 @@
+@import '../../app/sass/vars';
+
+.add-post-modal {
+  position: absolute;
+  top: -20%;
+  left: 40px;
+  right: 40px;
+  bottom: 40px;
+  background: rgb(255, 255, 255);
+  overflow: auto;
+  border-radius: 5px;
+  outline: none;
+  padding: 0px;
+  text-align: center;
+  margin: auto;
+  max-width: 500px;
+  height: 500px;
+    
+    .header {
+      background-color: rgba($orange, 0.9);
+      padding: 9px;
+      margin-bottom: 5px;
+    }
+
+    h2 {
+      margin: 0px;
+      font-size: 1.3em;
+      color: rgba(#FFF, 0.9);
+    }
+    
+    fieldset {
+      border: none;
+      margin-bottom: 5px;
+    }
+
+    form {
+      padding: 20px 50px;
+    }
+    
+    input[type="text"],
+    textarea {
+      outline: none;
+      width: 100%;
+      height: 44px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      border: 1px solid rgba(239, 193, 181, 0.6);
+      border-radius: 3px;
+      padding-left: 15px;
+      box-shadow: 0 2px 2px 0 rgba(100, 104, 107, 0.1);
+      color: rgba(#000, 0.6);
+
+      &:focus {
+        border-color: rgba(239, 193, 181, 1);
+      }
+    }
+
+    textarea { 
+      height: 200px;
+      padding-top: 10px;
+      resize: none;
+    }
+
+
+  .add-post-modal-overlay {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    background-color: rgba($grey, 0.2);
+  }
+
+  .button--primary {
+    background: #ee6541;
+    color: rgba(#FFF, 0.9);
+  }
+
+  .button {
+    outline: 0;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-family: inherit;
+    font-weight: 600;
+    box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.12);
+    padding: 9px 35px;
+    border-radius: 3px;
+  }
+}
