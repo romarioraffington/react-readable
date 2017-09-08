@@ -5,11 +5,12 @@ import Modal from 'react-modal';
 // Our Dependencies
 import style from './index.scss';
 
-export default ({ isAddPostModalOpen }) => {
+export default ({ isAddPostModalOpen, togglePostModal }) => {
   return (
     <div>
       <Modal
         isOpen={isAddPostModalOpen}
+        onRequestClose={() => togglePostModal(false)}
         contentLabel="Create a Post"
         className={{
           afterOpen: 'add-post-modal',
@@ -19,6 +20,11 @@ export default ({ isAddPostModalOpen }) => {
         }}>
         <div className="header">
           <h2> ...Add a Post ✍️</h2>
+          <span 
+            onClick={() => togglePostModal(false)}
+            className="close-button">
+            x
+          </span>
         </div>
         <form>
           <fieldset>

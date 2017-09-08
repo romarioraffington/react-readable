@@ -14,6 +14,9 @@ export default ({ togglePostModal, isPostModalOpen }) => (
       className="add-post">
         Add Post
     </button>
-    <AddPost isAddPostModalOpen={isPostModalOpen} />
+    <AddPost 
+      isAddPostModalOpen={isPostModalOpen}
+      togglePostModal={togglePostModal}
+    />
   </div>   
 )
