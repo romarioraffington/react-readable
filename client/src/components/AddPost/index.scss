@@ -23,7 +23,7 @@
   text-align: center;
   margin: auto;
   max-width: 500px;
-  height: 500px;
+  height: 560px;
    
   .header {
     background-color: rgba($orange, 0.9);
@@ -47,6 +47,7 @@
   }
   
   input[type="text"],
+  select,
   textarea {
     outline: none;
     width: 100%;
@@ -58,9 +59,12 @@
     padding-left: 15px;
     box-shadow: 0 2px 2px 0 rgba(100, 104, 107, 0.1);
     color: rgba(#000, 0.6);
+    text-transform: capitalize;
+    background: transparent;
 
     &:focus {
       border-color: rgba(239, 193, 181, 1);
+      background: transparent;
     }
   }
 

@@ -5,7 +5,8 @@ import Modal from 'react-modal';
 // Our Dependencies
 import style from './index.scss';
 
-export default ({ isAddPostModalOpen, togglePostModal }) => {
+export default ({ isAddPostModalOpen, togglePostModal, categories }) => {
+
   return (
     <div>
       <Modal
@@ -32,6 +33,15 @@ export default ({ isAddPostModalOpen, togglePostModal }) => {
           </fieldset>
           <fieldset>
             <input type="text" name="author" placeholder="Enter the Author" required/>
+          </fieldset>
+          <fieldset>
+            <select name="category">
+              {
+                categories.map(({name}) => (
+                  <option key={name} value={name}>{name}</option>
+                ))
+              }
+            </select>
           </fieldset>
           <fieldset>
             <textarea name="body" placeholder="Write your Post..." required/>
