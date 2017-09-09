@@ -4,9 +4,11 @@ import {
   FILTER_POSTS,
   VOTE_POST,
   TOGGLE_ADD_POST_MODAL,
+  SAVE_POST,
 } from './constants';
 
 import api from 'src/api';
+import uuidv4 from 'uuid/v4';
 import filter from 'src/app/util/filter';
 
 export function fetchPosts() {
@@ -35,5 +37,19 @@ export function togglePostModal(isOpen) {
   return {
     type: TOGGLE_ADD_POST_MODAL,
     payload: isOpen,
+  }
+}
+
+export function savePost({ title, body, author, category }) {
+  return {
+    type: SAVE_POST,
+    payload: api.post('/posts', {
+      id: uuidv4(),
+      timestamp: Date.now(),
+      title,
+      body,
+      author,
+      category,
+    }).then(res => res.data),
   }
 }

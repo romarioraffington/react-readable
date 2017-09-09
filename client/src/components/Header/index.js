@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import styles from './index.scss';
 import AddPost from 'src/components/AddPost';
 
-export default ({ togglePostModal, isPostModalOpen }) => (
+export default ({ togglePostModal, isPostModalOpen, categories, savePost }) => (
   <div className='top-container'>
     <Link to='/' className='logo'>Readable</Link>
     <button
@@ -17,6 +17,8 @@ export default ({ togglePostModal, isPostModalOpen }) => (
     <AddPost 
       isAddPostModalOpen={isPostModalOpen}
       togglePostModal={togglePostModal}
+      savePost={savePost}
+      categories={categories}
     />
   </div>   
 )

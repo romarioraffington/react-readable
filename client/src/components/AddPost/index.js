@@ -1,11 +1,17 @@
 // Extneral Dependencies
 import React from 'react';
 import Modal from 'react-modal';
+import serializeFrom from 'form-serialize';
 
 // Our Dependencies
 import style from './index.scss';
 
-export default ({ isAddPostModalOpen, togglePostModal, categories }) => {
+export default ({ isAddPostModalOpen, togglePostModal, categories, savePost }) => {
+
+  const handleSubmit = (e) => {
+    const values = serializeFrom(e.target, { hash: true });
+    savePost(values);
+  }
 
   return (
     <div>
@@ -27,12 +33,12 @@ export default ({ isAddPostModalOpen, togglePostModal, categories }) => {
             x
           </span>
         </div>
-        <form>
+        <form onSubmit={handleSubmit}>
           <fieldset>
-            <input type="text" name="title" placeholder="Enter a Title" required/>
+            <input type="text" name="title" placeholder="Enter a Title" />
           </fieldset>
           <fieldset>
-            <input type="text" name="author" placeholder="Enter the Author" required/>
+            <input type="text" name="author" placeholder="Enter the Author" />
           </fieldset>
           <fieldset>
             <select name="category">
@@ -44,7 +50,7 @@ export default ({ isAddPostModalOpen, togglePostModal, categories }) => {
             </select>
           </fieldset>
           <fieldset>
-            <textarea name="body" placeholder="Write your Post..." required/>
+            <textarea name="body" placeholder="Write your Post..." />
           </fieldset>
           <button type="submit" className="button button--primary">Post 👏</button>
         </form>

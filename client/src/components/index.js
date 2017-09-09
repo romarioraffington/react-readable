@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import Home from 'src/screens/Home';
 
 // Our Actions
-import { fetchPosts, filterPost, votePost, togglePostModal } from 'src/models/Post/actions';
+import { fetchPosts, filterPost, votePost, togglePostModal, savePost } from 'src/models/Post/actions';
 import { fetchCategories } from 'src/screens/Home/components/Category/model/actions';
 
 // Redux
@@ -28,6 +28,7 @@ const mapDispatchToProps = (dispatch) => ({
   onFilterClick: (order, by) => dispatch(filterPost(order, by)),
   onClickVote: (id, option) => dispatch(votePost(id, option)),
   togglePostModal: (isOpen) => dispatch(togglePostModal(isOpen)),
+  savePost: (values) => dispatch(savePost(values)),
 });
 
 class App extends Component {
@@ -48,6 +49,7 @@ class App extends Component {
       openAddPostModal, 
       togglePostModal,
       isPostModalOpen,
+      savePost,
      } = this.props;
 
     return (
@@ -62,6 +64,7 @@ class App extends Component {
         postFilter={postFilter}
         togglePostModal={togglePostModal}
         isPostModalOpen={isPostModalOpen}
+        savePost={savePost}
       />
     )
   }

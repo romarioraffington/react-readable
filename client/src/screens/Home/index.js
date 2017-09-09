@@ -27,6 +27,7 @@ class Home extends Component {
       postFilter,
       togglePostModal,
       isPostModalOpen,
+      savePost,
       } = this.props;
 
     // Filter Posts based on the
@@ -47,6 +48,8 @@ class Home extends Component {
         <Header 
           togglePostModal={togglePostModal}
           isPostModalOpen={isPostModalOpen}
+          savePost={savePost}
+          categories={categories}
         />
         <div className="main-container">
           <div className="left-container">

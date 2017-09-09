@@ -3,6 +3,7 @@ import {
   FILTER_POSTS,
   VOTE_POST,
   TOGGLE_ADD_POST_MODAL,
+  SAVE_POST,
 } from './constants';
 
 const initialState = {
@@ -76,6 +77,13 @@ export default function post (state=initialState, action) {
       return {
         ...state,
         isPostModalOpen: action.payload,
+      }
+ 
+    case SAVE_POST:
+      console.log(action.payload)
+      return {
+        ...state,
+        posts: posts.concat(action.payload),
       }
  
     default: 
