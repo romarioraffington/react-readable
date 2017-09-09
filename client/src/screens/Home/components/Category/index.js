@@ -10,6 +10,11 @@ export default ({ categories, isFetching }) => (
     <h3>Categories</h3>
     <nav>
       <ul>
+        <li key={name}>
+          <NavLink exact to='/' activeClassName="selected">
+            All
+          </NavLink>
+        </li>
         {!isFetching && (
           categories.map(({ path, name }) =>
             <li key={name}>
