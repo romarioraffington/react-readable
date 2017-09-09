@@ -27,11 +27,30 @@
       transform: scale(1.01);
     }
   }
-
-  .date {
-    display: inline-block;
+  
+  .top-left-data {
+    display: flex;
     margin-bottom: 15px;
     color: $grey;
+  }
+
+  .comment {
+    display: flex;
+    margin-left: 20px;
+
+    .img {
+      @extend %image-button;
+      background-image: url('./images/comment.svg');
+      width: 20px;
+      height: 15px;
+    }
+  }
+
+  .comment-count {
+    margin-left: 5px;
+  }
+
+  .date, .comment-count {
     font-size: 0.85em;
   }
   
@@ -75,20 +94,6 @@
 
   .down-vote {
     background-image: url('./images/downVote.svg');
-  }
-
-  .comments-count {
-    @extend %image-button;
-    position: absolute;
-    top: -3px;
-    left: -50px;
-    width: 40px;
-    height: 36px;
-    color: #FFF;
-    font-weight: 600;
-    padding: 10px 14px;
-    font-size: 12px;
-    background-image: url('./images/comment.svg');
   }
 
   .card-details {

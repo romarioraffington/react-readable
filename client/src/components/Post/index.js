@@ -7,7 +7,13 @@ import formatTimestamp from 'src/app/util/formatTimestamp';
 
 export default ({ post, onClickVote }) => (
   <li key={post.id} className="post-container">
+    <div className="top-left-data">
     <span className="date">{formatTimestamp(post.timestamp)}</span>
+    <div className="comment">
+      <span className="img">comment</span>
+      <span className="comment-count">10</span>
+    </div>
+    </div>
     <div className="card">
       <div className="meta">
         <div className="likes-container">
