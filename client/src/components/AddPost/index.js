@@ -35,10 +35,10 @@ export default ({ isAddPostModalOpen, togglePostModal, categories, savePost }) =
         </div>
         <form onSubmit={handleSubmit}>
           <fieldset>
-            <input type="text" name="title" placeholder="Enter a Title" />
+            <input type="text" name="title" placeholder="Enter a Title" required/>
           </fieldset>
           <fieldset>
-            <input type="text" name="author" placeholder="Enter the Author" />
+            <input type="text" name="author" placeholder="Enter the Author" required/>
           </fieldset>
           <fieldset>
             <select name="category">
@@ -50,7 +50,7 @@ export default ({ isAddPostModalOpen, togglePostModal, categories, savePost }) =
             </select>
           </fieldset>
           <fieldset>
-            <textarea name="body" placeholder="Write your Post..." />
+            <textarea name="body" placeholder="Write your Post..." required/>
           </fieldset>
           <button type="submit" className="button button--primary">Post 👏</button>
         </form>
