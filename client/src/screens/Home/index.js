@@ -1,6 +1,5 @@
 // External Dependencies
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
 // Our Components
 import PostList from 'src/components/PostList'
@@ -28,6 +27,7 @@ class Home extends Component {
       togglePostModal,
       isPostModalOpen,
       savePost,
+      onPostClick,
       } = this.props;
 
     // Filter Posts based on the
@@ -63,6 +63,7 @@ class Home extends Component {
               posts={filteredPosts}
               isFetching={isFetchingPosts}
               onClickVote={onClickVote}
+              onPostClick={onPostClick}
             />
           </div>
           <div className="right-container">

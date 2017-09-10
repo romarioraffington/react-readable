@@ -1,6 +1,7 @@
 // External Dependencies
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Route } from 'react-router-dom';
 
 // Our Components
 import Home from 'src/screens/Home';
@@ -50,22 +51,29 @@ class App extends Component {
       togglePostModal,
       isPostModalOpen,
       savePost,
+      x
      } = this.props;
 
     return (
-      <Home 
-        posts={posts}
-        isFetchingPosts={isFetchingPosts}
-        categories={categories}
-        isFetchingCategories={isFetchingCategories}
-        onFilterClick={onFilterClick}
-        onClickVote={onClickVote}
-        pathname={pathname}
-        postFilter={postFilter}
-        togglePostModal={togglePostModal}
-        isPostModalOpen={isPostModalOpen}
-        savePost={savePost}
-      />
+      <div>
+        <Route exact path='/' render={({ history }) => (
+          <Home 
+            posts={posts}
+            isFetchingPosts={isFetchingPosts}
+            categories={categories}
+            isFetchingCategories={isFetchingCategories}
+            onFilterClick={onFilterClick}
+            onClickVote={onClickVote}
+            pathname={pathname}
+            postFilter={postFilter}
+            togglePostModal={togglePostModal}
+            isPostModalOpen={isPostModalOpen}
+            savePost={savePost}
+            onPostClick={(uri) => history.push(uri)}
+          />
+        )}/>
+      </div>
+ 
     )
   }
 }

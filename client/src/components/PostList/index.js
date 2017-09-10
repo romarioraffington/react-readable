@@ -4,7 +4,7 @@ import React from 'react';
 // Our Components
 import Post from '../Post';
 
-export default ({ posts, isFetching, onClickVote }) => (
+export default ({ posts, isFetching, onClickVote, onPostClick}) => (
   <ul>
     { 
       !isFetching && ( 
@@ -14,6 +14,7 @@ export default ({ posts, isFetching, onClickVote }) => (
               key={post.id} 
               post={post} 
               onClickVote={onClickVote} 
+              onPostClick={onPostClick}
             /> 
           )
         ))

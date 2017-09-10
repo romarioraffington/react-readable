@@ -5,7 +5,7 @@ import React from 'react';
 import styles from './index.scss';
 import formatTimestamp from 'src/app/util/formatTimestamp';
 
-export default ({ post, onClickVote }) => (
+export default ({ post, onClickVote, onPostClick }) => (
   <li key={post.id} className="post-container">
     <div className="top-left-data">
     <span className="date">{formatTimestamp(post.timestamp)}</span>
@@ -26,7 +26,7 @@ export default ({ post, onClickVote }) => (
           </div>
         </div>
       </div>
-      <div className="card-content">
+      <div className="card-content" onClick={() => onPostClick(`${post.category}/${post.id}`)}>
         <h2>{post.title}</h2>
         <div className="card-details">
           <p className="description">{post.body}</p>
