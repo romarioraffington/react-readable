@@ -4,6 +4,7 @@ import {
   VOTE_POST,
   TOGGLE_ADD_POST_MODAL,
   SAVE_POST,
+  FETCH_POST_COMMENTS,
 } from './constants';
 
 const initialState = {
@@ -80,12 +81,24 @@ export default function post (state=initialState, action) {
       }
  
     case SAVE_POST:
-      console.log(action.payload)
       return {
         ...state,
         posts: posts.concat(action.payload),
       }
- 
+
+    case `${FETCH_POST_COMMENTS}_FULFILLED`:
+      const comments = action.payload;
+      const parentId =  Object.keys(comments).length ? comments[0].parentId : undefined;
+
+      if (typeof parentId === undefined) return state;
+
+      return {
+        ...state,
+        posts: state.posts.map(post =>
+          post.id === parentId ? Object.assign({}, post, { comments }) : post
+        )
+      };
+
     default: 
       return state;
   }

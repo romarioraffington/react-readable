@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import Home from 'src/screens/Home';
 
 // Our Actions
-import { fetchPosts, filterPost, votePost, togglePostModal, savePost } from 'src/models/Post/actions';
+import { fetchPostsAndComments, filterPost, votePost, togglePostModal, savePost } from 'src/models/Post/actions';
 import { fetchCategories } from 'src/screens/Home/components/Category/model/actions';
 
 // Redux
@@ -22,7 +22,7 @@ const mapStateToProps = ({ post, home, router }) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onMount: () => {
-    dispatch(fetchPosts());
+    dispatch(fetchPostsAndComments());
     dispatch(fetchCategories());
   },
   onFilterClick: (order, by) => dispatch(filterPost(order, by)),

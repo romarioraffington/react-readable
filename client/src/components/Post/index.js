@@ -11,7 +11,7 @@ export default ({ post, onClickVote }) => (
     <span className="date">{formatTimestamp(post.timestamp)}</span>
     <div className="comment">
       <span className="img">comment</span>
-      <span className="comment-count">10</span>
+      <span className="comment-count">{post.comments ? post.comments.length: 0}</span>
     </div>
     </div>
     <div className="card">
