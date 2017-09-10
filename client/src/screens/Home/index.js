@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 
 // Our Components
 import PostList from 'src/components/PostList'
-import Header from 'src/components/Header';
 import Category from './components/Category';
 import Filter from 'src/components/Filter';
 import Post from 'src/components/Post';
@@ -45,12 +44,6 @@ class Home extends Component {
 
     return (
       <div className="container">
-        <Header 
-          togglePostModal={togglePostModal}
-          isPostModalOpen={isPostModalOpen}
-          savePost={savePost}
-          categories={categories}
-        />
         <div className="main-container">
           <div className="left-container">
             <Category
