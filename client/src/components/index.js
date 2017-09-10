@@ -5,6 +5,8 @@ import { Route } from 'react-router-dom';
 
 // Our Components
 import Home from 'src/screens/Home';
+import Header from 'src/components/Header';
+import PostDetail from 'src/screens/PostDetail';
 
 // Our Actions
 import { fetchPostsAndComments, filterPost, votePost, togglePostModal, savePost } from 'src/models/Post/actions';
@@ -51,12 +53,19 @@ class App extends Component {
       togglePostModal,
       isPostModalOpen,
       savePost,
-      x
      } = this.props;
 
     return (
       <div>
-        <Route exact path='/' render={({ history }) => (
+          <div className="container">
+            <Header 
+              togglePostModal={togglePostModal}
+              isPostModalOpen={isPostModalOpen}
+              savePost={savePost}
+              categories={categories}
+            />
+        </div>
+        <Route exact path="/:category?" render={({ history }) => (
           <Home 
             posts={posts}
             isFetchingPosts={isFetchingPosts}
@@ -71,6 +80,9 @@ class App extends Component {
             savePost={savePost}
             onPostClick={(uri) => history.push(uri)}
           />
+        )}/>
+        <Route path='/:category/:postId' render={({ history }) => (
+          <PostDetail/>
         )}/>
       </div>
  
