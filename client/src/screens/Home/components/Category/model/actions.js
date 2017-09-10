@@ -5,9 +5,7 @@ import {
 
 import api from 'src/api';
 
-export function fetchCategories() {
-  return {
-    type: FETCH_CATEGORIES,
-    payload: api.get('/categories').then(res => res.data.categories),
-  }
-}
+export const fetchCategories = () => ({
+  type: FETCH_CATEGORIES,
+  payload: api.get('/categories').then(res => res.data.categories),
+})

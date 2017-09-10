@@ -31,38 +31,30 @@ export const fetchPostsAndComments = () => (
   )
 )
 
-export function filterPost(order, by) {
-  return {
-    type: FILTER_POSTS,
-    order,
-    by,
-  }
-}
+export const filterPost = (order, by) => ({
+  type: FILTER_POSTS,
+  order,
+  by,
+})
 
-export function votePost(id, option) {
-  return {
-    type: VOTE_POST,
-    payload: api.post(`/posts/${id}`, { option: option }).then(res => res.data)
-  }
-}
+export const votePost = (id, option) => ({
+  type: VOTE_POST,
+  payload: api.post(`/posts/${id}`, { option: option }).then(res => res.data)
+})
 
-export function togglePostModal(isOpen) {
-  return {
-    type: TOGGLE_ADD_POST_MODAL,
-    payload: isOpen,
-  }
-}
+export const togglePostModal = (isOpen) => ({
+  type: TOGGLE_ADD_POST_MODAL,
+  payload: isOpen,
+})
 
-export function savePost({ title, body, author, category }) {
-  return {
-    type: SAVE_POST,
-    payload: api.post('/posts', {
-      id: uuidv4(),
-      timestamp: Date.now(),
-      title,
-      body,
-      author,
-      category,
-    }).then(res => res.data),
-  }
-}
+export const savePost = ({ title, body, author, category }) => ({
+  type: SAVE_POST,
+  payload: api.post('/posts', {
+    id: uuidv4(),
+    timestamp: Date.now(),
+    title,
+    body,
+    author,
+    category,
+  }).then(res => res.data),
+})
