@@ -39,7 +39,7 @@ export const filterPost = (order, by) => ({
 
 export const votePost = (id, option) => ({
   type: VOTE_POST,
-  payload: api.post(`/posts/${id}`, { option: option }).then(res => res.data)
+  payload: api.post(`/posts/${id}`, { option }).then(res => res.data)
 })
 
 export const togglePostModal = (isOpen) => ({
