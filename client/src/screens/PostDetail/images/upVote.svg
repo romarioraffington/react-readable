@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
+    <title>Triangle</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.754585598">
+        <g id="Post-Detail" transform="translate(-1267.000000, -322.000000)" fill="#000000">
+            <g id="Meta" transform="translate(1204.000000, 315.000000)">
+                <g id="Likes">
+                    <g id="Controls" transform="translate(40.000000, 7.000000)">
+                        <polygon id="Triangle" points="32 0 41 18 23 18"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

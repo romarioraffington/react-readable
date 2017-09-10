@@ -81,8 +81,11 @@ class App extends Component {
             onPostClick={(uri) => history.push(uri)}
           />
         )}/>
-        <Route path='/:category/:postId' render={({ history }) => (
-          <PostDetail/>
+        <Route path='/:category/:postId' render={({ match }) => (
+          <PostDetail 
+            onClickVote={onClickVote}
+            post={posts.find(post => post.id === match.params.postId)}
+          />
         )}/>
       </div>
  
