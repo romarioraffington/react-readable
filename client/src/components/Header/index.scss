@@ -27,6 +27,7 @@
 
   .add-post {
     @extend %image-button;
+    background-color: transparent;
     background-image: url('./images/add-post.svg');
     width: 50px;
     height: 51px;
