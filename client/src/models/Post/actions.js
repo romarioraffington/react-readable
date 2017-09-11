@@ -7,6 +7,7 @@ import {
   SAVE_POST,
   UPDATE_POST,
   FETCH_POST_COMMENTS,
+  DELETE_POST,
 } from './constants';
 
 import api from 'src/api';
@@ -70,4 +71,10 @@ export const updatePost = (id, {title, body }) => ({
     title,
     body,
   }).then(res => res.data),
+})
+
+export const deletePost = (id) => ({
+  type: DELETE_POST,
+  id,
+  payload: api.delete(`/posts/${id}`).then(res => id)
 })

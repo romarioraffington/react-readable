@@ -17,6 +17,7 @@ import {
   togglePostModal, 
   savePost,
   updatePost,
+  deletePost
  } from 'src/models/Post/actions';
 import { fetchCategories } from 'src/screens/Home/components/Category/model/actions';
 
@@ -43,6 +44,7 @@ const mapDispatchToProps = (dispatch) => ({
   togglePostModal: (isOpen, isBeingEdited, post) => dispatch(togglePostModal(isOpen, isBeingEdited, post)),
   savePost: (values) => dispatch(savePost(values)),
   updatePost: (id, values) => dispatch(updatePost(id, values)),
+  onDeletePost: (id) => dispatch(deletePost(id)),
 });
 
 class App extends Component {
@@ -65,8 +67,8 @@ class App extends Component {
       isPostModalOpen,
       isBeingEdited,
       savePost,
-      editPost,
       updatePost,
+      onDeletePost,
       editingPost,
      } = this.props;
 
@@ -100,9 +102,13 @@ class App extends Component {
             onPostClick={(uri) => history.push(uri)}
           />
         )}/>
-        <Route path='/:category/:postId' render={({ match }) => (
+        <Route path='/:category/:postId' render={({ history, match }) => (
           <PostDetail 
             onClickVote={onClickVote}
+            onDeletePost={(id) => {
+              onDeletePost(id)
+              history.push('/')
+            }}
             togglePostModal={togglePostModal}
             post={posts.find(post => post.id === match.params.postId)}
           />

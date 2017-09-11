@@ -5,6 +5,7 @@ import {
   TOGGLE_ADD_POST_MODAL,
   SAVE_POST,
   UPDATE_POST,
+  DELETE_POST,
   FETCH_POST_COMMENTS,
 } from './constants';
 
@@ -102,7 +103,17 @@ export default function post (state=initialState, action) {
           post.id !== action.payload.id
         ).concat(action.payload)
       }
-
+      
+    case `${DELETE_POST}_FULFILLED`:
+      return {
+        ...state,
+        posts: state.posts.map(post => 
+          post.id === action.payload ? 
+            Object.assign({}, post, { deleted: true}) : 
+            post
+        )
+      };
+      
     case `${FETCH_POST_COMMENTS}_FULFILLED`:
       const comments = action.payload;
       const parentId =  Object.keys(comments).length ? comments[0].parentId : undefined;
@@ -115,6 +126,7 @@ export default function post (state=initialState, action) {
           post.id === parentId ? Object.assign({}, post, { comments }) : post
         )
       };
+
 
 
     default: 

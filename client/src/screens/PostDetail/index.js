@@ -13,6 +13,7 @@ class PostDetail extends Component {
       onClickVote,
       togglePostModal,
       onEditPostClick,
+      onDeletePost,
       } = this.props;
 
     return (
@@ -35,7 +36,7 @@ class PostDetail extends Component {
                 </div>
                 <div className="mod-button">
                   <div onClick={() => togglePostModal(true, true, post)} className="edit-button"></div>
-                  <div className="delete-button"></div>
+                  <div onClick={() => onDeletePost(post.id)} className="delete-button"></div>
                 </div>
               </div>
             </div>

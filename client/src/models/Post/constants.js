@@ -5,3 +5,4 @@ export const TOGGLE_ADD_POST_MODAL = 'TOGGLE_ADD_POST_MODAL';
 export const SAVE_POST = 'SAVE_POST';
 export const UPDATE_POST = 'UPDATE_POST';
 export const FETCH_POST_COMMENTS = 'FETCH_POST_COMMENTS';
+export const DELETE_POST = 'DELETE_POST';
