@@ -66,6 +66,11 @@
       border-color: rgba(239, 193, 181, 1);
       background: transparent;
     }
+    
+    &:disabled {
+      border-color: rgba($grey, 0.1);
+      background:rgba($grey, 0.1);
+    }
   }
 
   textarea { 
