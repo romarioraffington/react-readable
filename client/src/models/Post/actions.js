@@ -5,6 +5,7 @@ import {
   VOTE_POST,
   TOGGLE_ADD_POST_MODAL,
   SAVE_POST,
+  UPDATE_POST,
   FETCH_POST_COMMENTS,
 } from './constants';
 
@@ -42,9 +43,13 @@ export const votePost = (id, option) => ({
   payload: api.post(`/posts/${id}`, { option }).then(res => res.data)
 })
 
-export const togglePostModal = (isOpen) => ({
+export const togglePostModal = (isOpen, isBeingEdited=false, post={}) => ({
   type: TOGGLE_ADD_POST_MODAL,
-  payload: isOpen,
+  payload: {
+    isOpen,
+    isBeingEdited,
+    post,
+  }
 })
 
 export const savePost = ({ title, body, author, category }) => ({
@@ -56,5 +61,13 @@ export const savePost = ({ title, body, author, category }) => ({
     body,
     author,
     category,
+  }).then(res => res.data),
+})
+
+export const updatePost = (id, {title, body }) => ({
+  type: UPDATE_POST,
+  payload: api.put(`/posts/${id}`, {
+    title,
+    body,
   }).then(res => res.data),
 })

@@ -4,6 +4,7 @@ import {
   VOTE_POST,
   TOGGLE_ADD_POST_MODAL,
   SAVE_POST,
+  UPDATE_POST,
   FETCH_POST_COMMENTS,
 } from './constants';
 
@@ -15,7 +16,11 @@ const initialState = {
     order: 'asc', // options: asc, desc
     by: 'voteScore', // options: voteScore, timestamp
   },
-  isPostModalOpen: false,
+  modal: {
+    isBeingEdited: false,
+    isPostModalOpen: false,
+    post: {},
+  },
   error: null,
 }
 
@@ -77,13 +82,25 @@ export default function post (state=initialState, action) {
     case TOGGLE_ADD_POST_MODAL:
       return {
         ...state,
-        isPostModalOpen: action.payload,
+        modal: {
+          isPostModalOpen: action.payload.isOpen,
+          isBeingEdited: action.payload.isBeingEdited,    
+          post: action.payload.post,
+        }
       }
  
     case SAVE_POST:
       return {
         ...state,
         posts: posts.concat(action.payload),
+      }
+ 
+    case `${UPDATE_POST}_FULFILLED`:
+      return {
+        ...state,
+        posts: state.posts.filter(post => 
+          post.id !== action.payload.id
+        ).concat(action.payload)
       }
 
     case `${FETCH_POST_COMMENTS}_FULFILLED`:
@@ -98,6 +115,7 @@ export default function post (state=initialState, action) {
           post.id === parentId ? Object.assign({}, post, { comments }) : post
         )
       };
+
 
     default: 
       return state;

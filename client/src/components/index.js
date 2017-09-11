@@ -5,11 +5,19 @@ import { Route } from 'react-router-dom';
 
 // Our Components
 import Home from 'src/screens/Home';
+import PostModal from 'src/components/PostModal';
 import Header from 'src/components/Header';
 import PostDetail from 'src/screens/PostDetail';
 
 // Our Actions
-import { fetchPostsAndComments, filterPost, votePost, togglePostModal, savePost } from 'src/models/Post/actions';
+import { 
+  fetchPostsAndComments, 
+  filterPost, 
+  votePost, 
+  togglePostModal, 
+  savePost,
+  updatePost,
+ } from 'src/models/Post/actions';
 import { fetchCategories } from 'src/screens/Home/components/Category/model/actions';
 
 // Redux
@@ -20,7 +28,9 @@ const mapStateToProps = ({ post, home, router }) => ({
   categories: home.category.categories,
   isFetchingCategories: home.category.isFetching,
   pathname: router.location.pathname,
-  isPostModalOpen: post.isPostModalOpen,
+  isPostModalOpen: post.modal.isPostModalOpen,
+  isBeingEdited: post.modal.isBeingEdited,
+  editingPost: post.modal.post,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -30,8 +40,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onFilterClick: (order, by) => dispatch(filterPost(order, by)),
   onClickVote: (id, option) => dispatch(votePost(id, option)),
-  togglePostModal: (isOpen) => dispatch(togglePostModal(isOpen)),
+  togglePostModal: (isOpen, isBeingEdited, post) => dispatch(togglePostModal(isOpen, isBeingEdited, post)),
   savePost: (values) => dispatch(savePost(values)),
+  updatePost: (id, values) => dispatch(updatePost(id, values)),
 });
 
 class App extends Component {
@@ -52,19 +63,28 @@ class App extends Component {
       openAddPostModal, 
       togglePostModal,
       isPostModalOpen,
+      isBeingEdited,
       savePost,
+      editPost,
+      updatePost,
+      editingPost,
      } = this.props;
 
     return (
       <div>
           <div className="container">
-            <Header 
+            <Header togglePostModal={togglePostModal}/>
+
+            <PostModal 
+              isAddPostModalOpen={isPostModalOpen}
               togglePostModal={togglePostModal}
-              isPostModalOpen={isPostModalOpen}
+              isBeingEdited={isBeingEdited}
               savePost={savePost}
+              updatePost={updatePost}
               categories={categories}
+              post={editingPost}
             />
-        </div>
+          </div>
         <Route exact path="/:category?" render={({ history }) => (
           <Home 
             posts={posts}
@@ -76,7 +96,6 @@ class App extends Component {
             pathname={pathname}
             postFilter={postFilter}
             togglePostModal={togglePostModal}
-            isPostModalOpen={isPostModalOpen}
             savePost={savePost}
             onPostClick={(uri) => history.push(uri)}
           />
@@ -84,11 +103,11 @@ class App extends Component {
         <Route path='/:category/:postId' render={({ match }) => (
           <PostDetail 
             onClickVote={onClickVote}
+            togglePostModal={togglePostModal}
             post={posts.find(post => post.id === match.params.postId)}
           />
         )}/>
       </div>
- 
     )
   }
 }
