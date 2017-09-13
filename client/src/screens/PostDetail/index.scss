@@ -1,13 +1,5 @@
 @import '../../app/sass/vars';
-
-// Helpers
-%image-button {
-  display: inline-block;
-  cursor: pointer;
-  background-position: center;
-  background-repeat: no-repeat;
-  font-size: 0;
-}
+@import '../../app/sass/helpers';
 
 .post-detail { 
   .header {
@@ -74,7 +66,7 @@
       background-image: url('./images/downVote.svg');
     }
 
-    .mod-button {
+    .mod-buttons {
       bottom: 30px;
       right: 70px;
       position: absolute;

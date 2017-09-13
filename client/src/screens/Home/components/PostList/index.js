@@ -2,9 +2,9 @@
 import React from 'react';
 
 // Our Components
-import Post from '../Post';
+import Post from './components/Post';
 
-export default ({ posts, isFetching, onClickVote, onPostClick}) => (
+export default ({posts, isFetching, onClickVote, onPostClick }) => (
   <ul>
     { 
       !isFetching && ( 

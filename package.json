@@ -13,6 +13,7 @@
   "author": "Romario Raffington <romarioraff@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "async-parallel": "^1.2.3",
     "axios": "^0.16.2",
     "body-parser": "^1.17.1",
     "chalk": "^2.1.0",

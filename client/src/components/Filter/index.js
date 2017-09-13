@@ -15,7 +15,7 @@ export default ({ onFilterClick }) => {
             id="mostVotes"
             type="radio"
             name="filter"
-            onClick={(e) => onFilterClick('asc', 'voteScore')}
+            onClick={() => onFilterClick('asc', 'voteScore')}
             defaultChecked={true}
           />
           <label htmlFor="mostVotes">Most</label>
@@ -26,7 +26,7 @@ export default ({ onFilterClick }) => {
             id="leastVotes"
             type="radio"
             name="filter"
-            onClick={(e) => onFilterClick('desc', 'voteScore')}
+            onClick={() => onFilterClick('desc', 'voteScore')}
           />
           <label htmlFor="leastVotes">Least</label>
         </li>
@@ -39,7 +39,7 @@ export default ({ onFilterClick }) => {
             id="newest"
             type="radio"
             name="filter"
-            onClick={(e) => onFilterClick('asc', 'timestamp')}
+            onClick={() => onFilterClick('asc', 'timestamp')}
           />
           <label htmlFor="newest">Newest</label>
         </li>
@@ -49,7 +49,7 @@ export default ({ onFilterClick }) => {
             id="oldest"
             type="radio"
             name="filter"
-            onClick={(e) => onFilterClick('desc', 'timestamp')}
+            onClick={() => onFilterClick('desc', 'timestamp')}
           />
           <label htmlFor="oldest">Oldest</label>
         </li>

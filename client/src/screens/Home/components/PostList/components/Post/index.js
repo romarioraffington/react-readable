@@ -26,7 +26,7 @@ export default ({ post, onClickVote, onPostClick }) => (
           </div>
         </div>
       </div>
-      <div className="card-content" onClick={() => onPostClick(`${post.category}/${post.id}`)}>
+      <div className="card-content" onClick={() => onPostClick(`${post.category}/${post.id}`, post)}>
         <h2>{post.title}</h2>
         <div className="card-details">
           <p className="description">{post.body}</p>

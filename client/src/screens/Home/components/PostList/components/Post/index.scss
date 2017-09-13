@@ -1,13 +1,5 @@
-@import '../../app/sass/vars';
-
-// Helpers
-%image-button {
-  display: inline-block;
-  cursor: pointer;
-  background-position: center;
-  background-repeat: no-repeat;
-  font-size: 0;
-}
+@import '../../../../../../app/sass/vars';
+@import '../../../../../../app/sass/helpers';
 
 .post-container {
   width: 600px;
@@ -99,7 +91,6 @@
   .card-details {
     padding-right: 50px;
   }
-
 
   h2 {
     color: rgba($black, 0.9);

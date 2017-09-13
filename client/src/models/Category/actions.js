@@ -1,7 +1,4 @@
-import { 
-  FETCH_CATEGORIES,
-  UPDATE_SELECTED_CATEGORY,
-} from './constants';
+import { FETCH_CATEGORIES } from './constants';
 
 import api from 'src/api';
 

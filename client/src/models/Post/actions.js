@@ -1,9 +1,7 @@
-// Dependencies
 import {
   FETCH_POSTS,
-  FILTER_POSTS,
+  FETCH_POST,
   VOTE_POST,
-  TOGGLE_ADD_POST_MODAL,
   SAVE_POST,
   UPDATE_POST,
   FETCH_POST_COMMENTS,
@@ -33,24 +31,22 @@ export const fetchPostsAndComments = () => (
   )
 )
 
-export const filterPost = (order, by) => ({
-  type: FILTER_POSTS,
-  order,
-  by,
+export const fetchPost = (id) => ({
+  type: FETCH_POST,
+  payload: api.get(`/posts/${id}`).then(res => res.data)
 })
+
+export const fetchPostAndComments = () => (
+  dispatch => (
+    dispatch(fetchPost()).then(({ value: post }) =>
+      dispatch(fetchPostComment(post.id))
+    )
+  )
+)
 
 export const votePost = (id, option) => ({
   type: VOTE_POST,
   payload: api.post(`/posts/${id}`, { option }).then(res => res.data)
-})
-
-export const togglePostModal = (isOpen, isBeingEdited=false, post={}) => ({
-  type: TOGGLE_ADD_POST_MODAL,
-  payload: {
-    isOpen,
-    isBeingEdited,
-    post,
-  }
 })
 
 export const savePost = ({ title, body, author, category }) => ({

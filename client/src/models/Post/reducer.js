@@ -1,8 +1,7 @@
-import { 
-  FETCH_POSTS, 
-  FILTER_POSTS,
+import {
+  FETCH_POSTS,
+  FETCH_POST,
   VOTE_POST,
-  TOGGLE_ADD_POST_MODAL,
   SAVE_POST,
   UPDATE_POST,
   DELETE_POST,
@@ -10,113 +9,76 @@ import {
 } from './constants';
 
 const initialState = {
-  isFetchingPosts: false,
-  isUpdatingLikes: false,
+  isFetching: false,
   posts: [],
-  filter: {
-    order: 'asc', // options: asc, desc
-    by: 'voteScore', // options: voteScore, timestamp
-  },
-  modal: {
-    isBeingEdited: false,
-    isPostModalOpen: false,
-    post: {},
-  },
-  error: null,
+  post: {},
 }
 
-export default function post (state=initialState, action) {
-  switch(action.type) {
-    case `${FETCH_POSTS}_PENDING`: 
+export default function post(state = initialState, action) {
+  switch (action.type) {
+    case `${FETCH_POSTS}_PENDING`:
       return {
         ...state,
-        isFetchingPosts: true,
+        isFetching: true,
       };
 
     case `${FETCH_POSTS}_FULFILLED`:
       return {
         ...state,
-        isFetchingPosts: false,
+        isFetching: false,
         posts: action.payload,
       };
 
-    case `${FETCH_POSTS}_REJECTED`:
+    case `${FETCH_POST}_PENDING`:
       return {
         ...state,
-        isFetchingPosts: false,
-        error: action.payload,
+        isFetching: true,
       };
 
-    case FILTER_POSTS:
-      const { order, by } = action;
+    case `${FETCH_POST}_FULFILLED`:
       return {
         ...state,
-        filter: {
-          order,
-          by,
-        },
-      };
-
-    case `${VOTE_POST}_PENDING`: 
-      return {
-        ...state,
-        isUpdatingLikes: true,
+        isFetching: false,
+        post: action.payload,
       };
 
     case `${VOTE_POST}_FULFILLED`:
-      const { posts } = state;
+      const { posts, post } = state;
       const { id, voteScore } = action.payload;
 
       return {
         ...state,
-        isUpdatingLikes: false,
         posts: posts.map(p => p.id === id ? { ...p, voteScore } : p),
+        post: post === {} ? action.payload : Object.assign({}, state.post, { voteScore }),
       };
 
-    case `${VOTE_POST}_REJECTED`:
-      return {
-        ...state,
-        isUpdatingLikes: false,
-        error: action.payload,
-      };
-
-    case TOGGLE_ADD_POST_MODAL:
-      return {
-        ...state,
-        modal: {
-          isPostModalOpen: action.payload.isOpen,
-          isBeingEdited: action.payload.isBeingEdited,    
-          post: action.payload.post,
-        }
-      }
- 
     case SAVE_POST:
       return {
         ...state,
         posts: posts.concat(action.payload),
       }
- 
+
     case `${UPDATE_POST}_FULFILLED`:
       return {
         ...state,
-        posts: state.posts.filter(post => 
+        posts: state.posts.filter(post =>
           post.id !== action.payload.id
         ).concat(action.payload)
       }
-      
+
     case `${DELETE_POST}_FULFILLED`:
       return {
         ...state,
-        posts: state.posts.map(post => 
-          post.id === action.payload ? 
-            Object.assign({}, post, { deleted: true}) : 
+        posts: state.posts.map(post =>
+          post.id === action.payload ?
+            Object.assign({}, post, { deleted: true }) :
             post
         )
       };
-      
+
     case `${FETCH_POST_COMMENTS}_FULFILLED`:
       const comments = action.payload;
-      const parentId =  Object.keys(comments).length ? comments[0].parentId : undefined;
+      const parentId = Object.keys(comments).length ? comments[0].parentId : undefined;
 
       if (typeof parentId === undefined) return state;
 
@@ -127,9 +89,7 @@ export default function post (state=initialState, action) {
         )
       };
 
-
-
-    default: 
+    default:
       return state;
   }
 }
