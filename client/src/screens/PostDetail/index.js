@@ -7,22 +7,25 @@ import serializeFrom from 'form-serialize';
 
 // Our Components
 import Filter from 'src/components/Filter';
+import { filterComment } from 'src/models/Filter/actions';
 
 // Our Actions
 import { fetchPost, votePost, deletePost } from 'src/models/Post/actions';
 import { fetchComments, voteComment, saveComment, deleteComment } from 'src/models/Comment/actions';
-import { filterClick } from 'src/models/Filter/actions';
+import { filterComments } from 'src/models/Filter/actions';
 import { togglePostModal } from 'src/models/PostModal/actions';
 
 // Our Dependencies
 import styles from './index.scss';
+import filter from 'src/app/util/filter';
 import formatTimestamp from 'src/app/util/formatTimestamp';
 
-const mapStateToProps = ({ post, comment }) => {
+const mapStateToProps = ({ post, comment, filter }) => {
   return {
     post: post.post,
     isFetchingPost: post.isFetching,
     isFetching: post.isFetching,
+    filterType: filter.comment,
     comments: comment.comments,
   }
 }
@@ -33,10 +36,10 @@ const mapDispatchToProps = (dispatch) => {
     fetchComments,
     saveComment,
     voteComment,
+    filterComments,
     deleteComment,
     votePost,
     deletePost,
-    filterClick,
     togglePostModal,
   }, dispatch)
 }
@@ -58,6 +61,7 @@ class PostDetail extends Component {
       votePost, 
       comments,
       voteComment,
+      filterType,
     } = this.props;
 
     const onDeleteComment = (id) => {
@@ -74,9 +78,10 @@ class PostDetail extends Component {
 
       const values = serializeFrom(e.target, { hash: true });
       this.props.saveComment(values);
-
       this.formRef.reset();
     }
+
+    const filteredComments = filter(comments.concat(), filterType.order, filterType.by);
 
     return (
       <div className="post-detail">
@@ -126,10 +131,10 @@ class PostDetail extends Component {
                 {/* All Comments */}
                 <div className="comments">
                   <div>
-                    { !!comments.length && <h3>Comments</h3> }
+                    { !!filteredComments.length && <h3>Comments</h3> }
                     <ul>
                     {
-                      !!comments.length && comments.map(comment => (
+                      !!filteredComments.length && filteredComments.map(comment => (
                         !comment.deleted && (
                           <ol key={comment.id}>
                             <p>{comment.body}</p>
@@ -155,9 +160,9 @@ class PostDetail extends Component {
                     ))}
                     </ul>
                   </div>
-                  { !!comments.length  && (
+                  { !!filteredComments.length  && (
                     <div className="filter-wrapper">
-                      <Filter onFilterClick={this.props.filterPost} />
+                      <Filter onFilterClick={this.props.filterComments}/>
                     </div>
                   )}
                 </div>

@@ -1,4 +1,4 @@
-import { FILTER_POSTS, FILTER_COMMENT } from './constants';
+import { FILTER_POSTS, FILTER_COMMENTS } from './constants';
 
 // order: 'asc' or 'desc'
 // by: 'voteScore' or 'timestamp'
@@ -26,7 +26,7 @@ export default function post (state=initialState, action) {
         },
       };
 
-    case FILTER_COMMENT:
+    case FILTER_COMMENTS:
       return {
         ...state,
         comment: {

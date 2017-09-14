@@ -1,4 +1,4 @@
-import { FILTER_POSTS, FILTER_COMMENT } from './constants';
+import { FILTER_POSTS, FILTER_COMMENTS } from './constants';
 
 export const filterPost = (order, by) => ({
   type: FILTER_POSTS,
@@ -6,8 +6,8 @@ export const filterPost = (order, by) => ({
   by,
 })
 
-export const filterComment = (order, by) => ({
-  type: FILTER_COMMENT,
+export const filterComments = (order, by) => ({
+  type: FILTER_COMMENTS,
   order,
   by,
 })
