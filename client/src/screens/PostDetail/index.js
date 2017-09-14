@@ -10,7 +10,7 @@ import Filter from 'src/components/Filter';
 
 // Our Actions
 import { fetchPost, votePost, deletePost } from 'src/models/Post/actions';
-import { fetchComments, voteComment, saveComment } from 'src/models/Comment/actions';
+import { fetchComments, voteComment, saveComment, deleteComment } from 'src/models/Comment/actions';
 import { filterClick } from 'src/models/Filter/actions';
 import { togglePostModal } from 'src/models/PostModal/actions';
 
@@ -33,6 +33,7 @@ const mapDispatchToProps = (dispatch) => {
     fetchComments,
     saveComment,
     voteComment,
+    deleteComment,
     votePost,
     deletePost,
     filterClick,
@@ -58,6 +59,10 @@ class PostDetail extends Component {
       comments,
       voteComment,
     } = this.props;
+
+    const onDeleteComment = (id) => {
+      this.props.deleteComment(id)
+    }
 
     const onDeletePost = () => {
       this.props.deletePost(post.id)
@@ -125,26 +130,28 @@ class PostDetail extends Component {
                     <ul>
                     {
                       !!comments.length && comments.map(comment => (
-                        <ol key={comment.id}>
-                          <p>{comment.body}</p>
-                          <div className="meta">
-                            <span className="author">by {comment.author}</span>
-                            <span className="date">{formatTimestamp(comment.timestamp)}</span>
-                            <div className="danger-buttons">
-                              <div onClick={() => this.props.togglePostModal(isOpen, post)} className="edit-button"></div>
-                              <div onClick={onDeletePost} className="delete-button"></div>
-                            </div>
-                            <div className="likes-container">
-                              <span className="likes-count">
-                                {comment.voteScore > 0 ? `+${comment.voteScore}` : comment.voteScore}
-                              </span>
-                              <div className="likes-buttons">
-                                <span onClick={() => voteComment(comment.id, 'upVote')} className="up-vote"></span>
-                                <span onClick={() => voteComment(comment.id, 'downVote')} className="down-vote"></span>
+                        !comment.deleted && (
+                          <ol key={comment.id}>
+                            <p>{comment.body}</p>
+                            <div className="meta">
+                              <span className="author">by {comment.author}</span>
+                              <span className="date">{formatTimestamp(comment.timestamp)}</span>
+                              <div className="danger-buttons">
+                                <div onClick={() => this.props.togglePostModal(isOpen, post)} className="edit-button"></div>
+                                <div onClick={() => onDeleteComment(comment.id)} className="delete-button"></div>
+                              </div>
+                              <div className="likes-container">
+                                <span className="likes-count">
+                                  {comment.voteScore > 0 ? `+${comment.voteScore}` : comment.voteScore}
+                                </span>
+                                <div className="likes-buttons">
+                                  <span onClick={() => voteComment(comment.id, 'upVote')} className="up-vote"></span>
+                                  <span onClick={() => voteComment(comment.id, 'downVote')} className="down-vote"></span>
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        </ol>
+                          </ol>
+                        )
                     ))}
                     </ul>
                   </div>

@@ -38,7 +38,7 @@ export const updateComment = (id, { author, body }) => ({
   }).then(res => res.data),
 })
 
-export const deletePost = (id) => ({
+export const deleteComment = (id) => ({
   type: DELETE_COMMENT,
   payload: api.delete(`/comments/${id}`).then(res => id)
 })

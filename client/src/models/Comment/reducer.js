@@ -38,7 +38,7 @@ export default function post(state = initialState, action) {
         isFetching: false,
         comments: state.comments.concat(action.payload),
       };
-      
+
     case `${VOTE_COMMENT}_FULFILLED`:
     const { comments } = state;
     const { id, voteScore } = action.payload;
@@ -47,6 +47,17 @@ export default function post(state = initialState, action) {
       ...state,
       comments: comments.map(c => c.id === id ? { ...c, voteScore } : c),
     };
+
+    case `${DELETE_COMMENT}_FULFILLED`:
+    return {
+      ...state,
+      comments: state.comments.map(comment =>
+        comment.id === action.payload ?
+          Object.assign({}, comment, { deleted: true }) :
+          comment
+      )
+    };
+
 
     default:
       return state;
