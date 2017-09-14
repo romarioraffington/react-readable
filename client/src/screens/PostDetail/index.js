@@ -114,7 +114,7 @@ class PostDetail extends Component {
         {
           !isFetchingPost && (
             <div className="container">
-              <div id="header" className="header">
+              <div className="header">
                 <span className="date">Published: {formatTimestamp(post.timestamp)}</span>
                 <h2>{post.title}</h2>
                 <p className="author">by {post.author} </p>
@@ -123,7 +123,7 @@ class PostDetail extends Component {
                     <span className="likes-count">
                       {post.voteScore > 0 ? `+${post.voteScore}` : post.voteScore}
                     </span>
-                    <div className="likes-buttons">
+                    <div id="edit-anchor" className="likes-buttons">
                       <span onClick={() => votePost(post.id, 'upVote')} className="up-vote"></span>
                       <span onClick={() => votePost(post.id, 'downVote')} className="down-vote"></span>
                     </div>
@@ -190,7 +190,7 @@ class PostDetail extends Component {
                               <span className="author">by {comment.author}</span>
                               <span className="date">{formatTimestamp(comment.timestamp)}</span>
                               <div className="danger-buttons">
-                                <a href="#header" 
+                                <a href="#edit-anchor" 
                                   onClick={() =>  {
                                     this.formRef.reset();
                                     this.props.editComment(comment)
