@@ -16,7 +16,7 @@ import PostDetail from 'src/screens/PostDetail';
 import { togglePostModal } from 'src/models/PostModal/actions';
 
 const mapStateToProps = ({ router }) => ({
-  router: router.location.pathname,
+  pathname: router.location.pathname,
 });
 
 const mapDispatchToProps = (dispatch) => {
@@ -27,9 +27,10 @@ const mapDispatchToProps = (dispatch) => {
 
 class App extends Component {
   render() {
+    const { pathname, togglePostModal } = this.props;
     return (
       <div className="container">
-        <Header togglePostModal={this.props.togglePostModal} />
+        <Header pathname={pathname} togglePostModal={togglePostModal} />
         <Route exact path="/:category?" component={Home}/>
         <Route path='/:category/:postId' component={PostDetail} />
         <PostModal/>

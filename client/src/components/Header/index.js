@@ -5,17 +5,20 @@ import { Link } from 'react-router-dom';
 // Our Dependencies
 import styles from './index.scss';
 
-export default ({ togglePostModal }) => {
+export default ({ pathname, togglePostModal }) => {
   const isOpen = true;
   
   return (
     <div className='top-container'>
       <Link to='/' className='logo'>Readable</Link>
-      <button
-        onClick={() => togglePostModal(isOpen)}
-        className="add-post">
-          Add Post
-      </button>
+
+      { pathname === '/' && (
+        <button
+          onClick={() => togglePostModal(isOpen)}
+          className="add-post">
+            Add Post
+        </button>
+      )}
     </div>  
   )
 }
