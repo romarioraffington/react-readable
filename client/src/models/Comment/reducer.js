@@ -38,6 +38,15 @@ export default function post(state = initialState, action) {
         isFetching: false,
         comments: state.comments.concat(action.payload),
       };
+      
+    case `${VOTE_COMMENT}_FULFILLED`:
+    const { comments } = state;
+    const { id, voteScore } = action.payload;
+
+    return {
+      ...state,
+      comments: comments.map(c => c.id === id ? { ...c, voteScore } : c),
+    };
 
     default:
       return state;

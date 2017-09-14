@@ -9,7 +9,7 @@ import Filter from 'src/components/Filter';
 
 // Our Actions
 import { fetchPost, votePost, deletePost } from 'src/models/Post/actions';
-import { fetchComments } from 'src/models/Comment/actions';
+import { fetchComments, voteComment } from 'src/models/Comment/actions';
 import { filterClick } from 'src/models/Filter/actions';
 import { togglePostModal } from 'src/models/PostModal/actions';
 
@@ -30,6 +30,7 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     fetchPost,
     fetchComments,
+    voteComment,
     votePost,
     deletePost,
     filterClick,
@@ -48,7 +49,13 @@ class PostDetail extends Component {
 
   render() {
     const isOpen = true;
-    const { post, isFetchingPost, votePost, comments } = this.props;
+    const { 
+      post, 
+      isFetchingPost, 
+      votePost, 
+      comments,
+      voteComment,
+    } = this.props;
 
     const onDeletePost = () => {
       this.props.deletePost(post.id)
@@ -118,8 +125,8 @@ class PostDetail extends Component {
                                 {comment.voteScore > 0 ? `+${comment.voteScore}` : comment.voteScore}
                               </span>
                               <div className="likes-buttons">
-                                <span onClick={() => votePost(post.id, 'upVote')} className="up-vote"></span>
-                                <span onClick={() => votePost(post.id, 'downVote')} className="down-vote"></span>
+                                <span onClick={() => voteComment(comment.id, 'upVote')} className="up-vote"></span>
+                                <span onClick={() => voteComment(comment.id, 'downVote')} className="down-vote"></span>
                               </div>
                             </div>
                           </div>
