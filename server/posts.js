@@ -20,7 +20,7 @@ const defaultData = {
     title: 'Udacity + React = ❤️',
     body: "React is a powerful JavaScript library ideal for building interactive, data-driven user interfaces, and it’s used by some of the most successful brands in the world, including Facebook, Netflix, Airbnb, and more. \n\n The goal of this program is to equip you with the skills and experience you'll need to become a professional React developer. We designed the curriculum in collaboration with the experts from React Training to ensure that graduates emerge well-prepared to take advantage of dramatically increasing demand for developers with React skills.",
     author: 'Richard Kalehoff',
-    category: 'react',
+    category: 'udacity',
     voteScore: 30,
     deleted: false 
   },
