@@ -15,7 +15,7 @@ export const fetchComments = (id) => ({
 })
 
 export const saveComment = ({ author, body, parentId }) => ({
-  type: SAVE_POST,
+  type: SAVE_COMMENT,
   payload: api.post('/comments', {
     id: uuidv4(),
     timestamp: Date.now(),

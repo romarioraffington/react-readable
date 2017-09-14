@@ -3,13 +3,14 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import parallel from 'async/parallel';
+import serializeFrom from 'form-serialize';
 
 // Our Components
 import Filter from 'src/components/Filter';
 
 // Our Actions
 import { fetchPost, votePost, deletePost } from 'src/models/Post/actions';
-import { fetchComments, voteComment } from 'src/models/Comment/actions';
+import { fetchComments, voteComment, saveComment } from 'src/models/Comment/actions';
 import { filterClick } from 'src/models/Filter/actions';
 import { togglePostModal } from 'src/models/PostModal/actions';
 
@@ -30,6 +31,7 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     fetchPost,
     fetchComments,
+    saveComment,
     voteComment,
     votePost,
     deletePost,
@@ -62,6 +64,15 @@ class PostDetail extends Component {
       this.props.history.push('/')
     }
 
+    const handleSubmit = (e) => {
+      e.preventDefault();
+
+      const values = serializeFrom(e.target, { hash: true });
+      this.props.saveComment(values);
+
+      this.formRef.reset();
+    }
+
     return (
       <div className="post-detail">
         {
@@ -92,12 +103,15 @@ class PostDetail extends Component {
               <div className="content">
                 <p className="description">{post.body}</p>
                 <div className="add-comment-container">
-                  <form>
+                  <form 
+                    ref={(el) => this.formRef = el}
+                    onSubmit={handleSubmit}
+                  >
                     <fieldset>
-                      <input type="text" placeholder="Author" required />
+                      <input name="author" type="text" placeholder="Author" required />
                     </fieldset>
                     <fieldset>
-                      <textarea placeholder="Post a Comment!" required></textarea>
+                      <textarea name="body" placeholder="Post a Comment!" required></textarea>
                     </fieldset>
                     <button className="button button--primary" type="submit">Post 🙌</button>
                   </form>
