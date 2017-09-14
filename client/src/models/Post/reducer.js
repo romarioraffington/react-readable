@@ -52,10 +52,10 @@ export default function post(state = initialState, action) {
         post: post === {} ? action.payload : Object.assign({}, state.post, { voteScore }),
       };
 
-    case SAVE_POST:
+    case `${SAVE_POST}_FULFILLED`:
       return {
         ...state,
-        posts: posts.concat(action.payload),
+        posts: state.posts.concat(action.payload),
       }
 
     case `${UPDATE_POST}_FULFILLED`:

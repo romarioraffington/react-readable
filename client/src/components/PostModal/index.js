@@ -39,8 +39,12 @@ class PostModal extends Component {
     const isEditable = Object.keys(post).length !== 0;
   
     const handleSubmit = (e) => {
+      e.preventDefault();
       const values = serializeFrom(e.target, { hash: true });
       isEditable ? updatePost(post.id, values) : savePost(values);
+      
+      // Close Modal
+      this.props.togglePostModal(isOpen);
     }
 
     return (
