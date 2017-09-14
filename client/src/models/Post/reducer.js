@@ -39,7 +39,7 @@ export default function post(state = initialState, action) {
       return {
         ...state,
         isFetching: false,
-        post: action.payload,
+        post: Object.assign({}, state.post, action.payload)
       };
 
     case `${VOTE_POST}_FULFILLED`:
@@ -49,7 +49,9 @@ export default function post(state = initialState, action) {
       return {
         ...state,
         posts: posts.map(p => p.id === id ? { ...p, voteScore } : p),
-        post: post === {} ? action.payload : Object.assign({}, state.post, { voteScore }),
+        post: Object.keys(post).length > 0 ? 
+          action.payload :
+          Object.assign({}, state.post, { voteScore }),
       };
 
     case `${SAVE_POST}_FULFILLED`:
@@ -63,7 +65,8 @@ export default function post(state = initialState, action) {
         ...state,
         posts: state.posts.filter(post =>
           post.id !== action.payload.id
-        ).concat(action.payload)
+        ).concat(action.payload),
+        post: Object.assign({}, state.post, action.payload)
       }
 
     case `${DELETE_POST}_FULFILLED`:
@@ -73,7 +76,8 @@ export default function post(state = initialState, action) {
           post.id === action.payload ?
             Object.assign({}, post, { deleted: true }) :
             post
-        )
+        ),
+        post: Object.assign({}, state.post, { deleted: true })
       };
 
     case `${FETCH_POST_COMMENTS}_FULFILLED`:
