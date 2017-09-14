@@ -70,6 +70,7 @@
     "build": "npm run clean && webpack",
     "start": "concurrently \"npm run server\"  \"npm run client\"",
     "server": "node server",
-    "client": "node client"
+    "client": "node client",
+    "heroku-prebuild": "npm run build"
   }
 }
