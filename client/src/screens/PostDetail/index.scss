@@ -169,6 +169,14 @@
     margin-top: 60px;
     position: relative;
 
+    ul, ol {
+      padding-left: 0px;
+    }
+
+    ol {
+      margin-bottom: 50px;
+    }
+
     .filter-wrapper {
       position: absolute;
       right: -50%;
