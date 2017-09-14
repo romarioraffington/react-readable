@@ -147,7 +147,7 @@ class PostDetail extends Component {
                       <input  
                         name="author" 
                         type="text" 
-                        placeholder="Author" 
+                        placeholder="What's your name?" 
                         defaultValue={isEditing ? editingComment.author: ''}
                         className={isEditing && 'edit-mode'}
                         required 
@@ -156,7 +156,7 @@ class PostDetail extends Component {
                     <fieldset>
                       <textarea 
                         name="body" 
-                        placeholder="Post a Comment!" 
+                        placeholder="Say something nice..." 
                         defaultValue={isEditing ? editingComment.body: ''} 
                         className={isEditing && 'edit-mode'}
                         required 
