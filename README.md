@@ -6,7 +6,7 @@
 
 <hr />
 
-<div align="center" style="margin: 80px auto">
+<div align="center">
   <img src="docs/images/demo.gif" alt="react readable demo" title="react readable demo">
   <br>
 </div>
