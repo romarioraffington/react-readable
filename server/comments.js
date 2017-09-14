@@ -7,8 +7,8 @@ const defaultData = {
     id: '894tuq4ut84ut8v4t8wun89g',
     parentId: "8xf0y6ziyjabvozdd253nd",
     timestamp: 1468166872634,
-    body: 'Hi there! I am a COMMENT.',
-    author: 'thingtwo',
+    body: 'Cool! I didn\'t know testing React app could be soo fun! 😎' ,
+    author: 'Romario Raffington',
     voteScore: 6,
     deleted: false,
     parentDeleted: false 
@@ -17,8 +17,8 @@ const defaultData = {
     id: '8tu4bsun805n8un48ve89',
     parentId: "8xf0y6ziyjabvozdd253nd",
     timestamp: 1469479767190,
-    body: 'Comments. Are. Cool.',
-    author: 'thingone',
+    body: 'React is cool, but have you seen the iPhone X! 😱',
+    author: 'Jamel Reid',
     voteScore: -5,
     deleted: false,
     parentDeleted: false
