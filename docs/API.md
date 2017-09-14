@@ -1,82 +1,42 @@
-# API Spec
-Use an Authorization header to work with your own data:
+# API Server
 
-### Authenticatoin Header
+To install and start the API server, run the following commands in this directory:
 
-`fetch(url, { headers: { 'Authorization': 'whatever-you-want' }})`
+* `npm install`
+* `node server`
 
-The following endpoints are available:  
+## Using The Server
 
-### Categories
+### Include An Authorization Header
 
-`GET /categories`  
- Get all of the categories available for the app.
+All requests should use an **Authorization header** to work with your own data:
 
-### Posts
+```js
+fetch(
+    url,
+    {
+        headers: { 'Authorization': 'whatever-you-want' }
+    }
+)
+```
 
-`GET /:category/posts`  
- Get all of the posts for a particular category   
+### API Endpoint
 
-`GET /posts`  
- Get all of the posts. Useful for the main page when no category is selected.  
+The following endpoints are available:
 
-`POST /posts`  
-  Add a new post  
-  
-  **PARAMS:**   
-  `id` - UUID should be fine, but any unique id will work  
-  `timestamp` - timestamp in whatever format you like, you can use `Date.now()` if you like  
-  `title` - String  
-  `body` - String  
-  `author` - String  
-  `category` - Any of the categories listed in categories.js. Feel free to extend this list as you desire.  
-
-`GET /posts/:id`  
- Get the details of a single post  
-
-`POST /posts/:id`  
- Used for voting on a post  
-
-`option` - String: Either "upVote" or "downVote"  
-    
-`PUT /posts/:id`  
- Edit the details of an existing post  
-
-  **PARAMS:**  
-  `title` - String  
-  `body` - String  
-
-`DELETE /posts/:id`    
-  * Sets the deleted flag for a post to 'true'.   
-  * Sets the parentDeleted flag for all child comments to 'true'.  
-  
-`GET /posts/:id/comments`  
-  Get all the comments for a single post  
-
-`POST /comments`  
-  Add a comment to a post  
-
-  **PARAMS:**  
-  `id`: Any unique ID. As with posts, UUID is probably the best here.  
-  `timestamp`: timestamp. Get this however you want.  
-  `body`: String  
-  `owner`: String  
-  `parentId`: Should match a post id in the database.  
-
-### Comments 
-
-`GET /comments/:id`  
-  Get the details for a single comment  
-
-`POST /comments/:id`  
-  Used for voting on a comment.  
-
-`PUT /comments/:id`  
-  Edit the details of an existing comment  
-  
-  **PARAMS:**  
-  `timestamp`: timestamp. Get this however you want.  
-  `body`: String  
-
-`DELETE /comments/:id`  
-  Sets a comment's deleted flag to 'true'  
+| Endpoints       | Usage          | Params         |
+|-----------------|----------------|----------------|
+| `GET /categories` | Get all of the categories available for the app. List is found in `categories.js`. Feel free to extend this list as you desire. |  |
+| `GET /:category/posts` | Get all of the posts for a particular category. |  |
+| `GET /posts` | Get all of the posts. Useful for the main page when no category is selected. |  |
+| `POST /posts` | Add a new post. | **id** - UUID should be fine, but any unique id will work <br> **timestamp** - [Timestamp] Can in whatever format you like, you can use `Date.now()` if you like. <br> **title** - [String] <br> **body** - [String] <br> **author** - [String] <br> **category** -  Any of the categories listed in `categories.js`. Feel free to extend this list as you desire. |
+| `GET /posts/:id` | Get the details of a single post. | |
+| `POST /posts/:id` | Used for voting on a post. | **option** - [String]: Either `"upVote"` or `"downVote"`. |
+| `PUT /posts/:id` | Edit the details of an existing post. | **title** - [String] <br> **body** - [String] |
+| `DELETE /posts/:id` | Sets the deleted flag for a post to 'true'. <br> Sets the parentDeleted flag for all child comments to 'true'. | |
+| `GET /posts/:id/comments` | Get all the comments for a single post. | |
+| `POST /comments` | Add a comment to a post. | **id** - Any unique ID. As with posts, UUID is probably the best here. <br> **timestamp** - [Timestamp] Get this however you want. <br> **body** - [String] <br> **author** - [String] <br> **parentId** - Should match a post id in the database. |
+| `GET /comments/:id` | Get the details for a single comment. | |
+| `POST /comments/:id` | Used for voting on a comment. | |
+| `PUT /comments/:id` | Edit the details of an existing comment. | **timestamp** - timestamp. Get this however you want. <br> **body** - [String] |
+| `DELETE /comments/:id` | Sets a comment's deleted flag to `true`. | &nbsp; |
