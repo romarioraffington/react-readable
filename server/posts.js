@@ -7,7 +7,7 @@ const defaultData = {
     id: '8xf0y6ziyjabvozdd253nd',
     timestamp: 1504491657097,
     title: 'Testing React Apps 👨‍🔬',
-    body: 'Testing is an infinite process of comparing the invisible to the ambiguous in order to avoid the unthinkable happening',
+    body: 'In July, I completed the first project for the Udacity React Nanodegree Program. Having a QA background, I decided to write unit tests to ensure functionality didn’t break as I added new features. \n\nAfter completing the project I decided to share it with my classmates via slack. \n\nMost of the resources I recommended, however, showed examples instead of explaining the thought process behind writing certain tests. In my opinion, the “why” is more important because that knowledge can be transferred onto testing other React apps. \n\n It’s like the old saying — you give a man a few examples and he can only test a few scenarios. Tell a man the “why” and he can apply it to many other scenarios… or something like that 😶.',
     author: 'Romario Raffington',
     category: 'react',
     voteScore: -10,
@@ -18,8 +18,8 @@ const defaultData = {
     id: '12345xf0y6ziyjabvozdd253nd',
     timestamp: 1468479767190,
     title: 'Udacity + React = ❤️',
-    body: 'React is completely transforming Front-End Development. Master this powerful UI library from Facebook with Udacity',
-    author: 'Udacity',
+    body: "React is a powerful JavaScript library ideal for building interactive, data-driven user interfaces, and it’s used by some of the most successful brands in the world, including Facebook, Netflix, Airbnb, and more. \n\n The goal of this program is to equip you with the skills and experience you'll need to become a professional React developer. We designed the curriculum in collaboration with the experts from React Training to ensure that graduates emerge well-prepared to take advantage of dramatically increasing demand for developers with React skills.",
+    author: 'Richard Kalehoff',
     category: 'react',
     voteScore: 30,
     deleted: false 
@@ -28,8 +28,8 @@ const defaultData = {
   "6ni6ok3ym7mf1p33lnez": {
     id: '6ni6ok3ym7mf1p33lnez',
     timestamp: 1504213443368,
-    title: 'Learn Redux in 10 minutes!',
-    body: 'Just kidding. It takes more than 10 minutes to learn technology.',
+    title: 'Learn Redux in 10 minutes! 🛫',
+    body: 'React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes.\n\nReact components implement a render() method that takes input data and returns what to display. This example uses an XML-like syntax called JSX. Input data that is passed into the component can be accessed by render() via this.props. \n\nJSX is optional and not required to use React. Try clicking on "Compiled JS" to see the raw JavaScript code produced by the JSX compiler.',
     author: 'Micheal Jackson',
     category: 'redux',
     voteScore: 6,
@@ -39,11 +39,11 @@ const defaultData = {
   "12ni6ok3ym7mf1p33lnez": {
     id: '12ni6ok3ym7mf1p33lnez',
     timestamp: 1498479767190,
-    title: 'Udacity is Awesome 😍',
-    body: 'The goal of this program is to equip you with the skills and experience you\'ll need to become a professional React developer.',
-    author: 'Udacity',
-    category: 'Udacity',
-    voteScore: 12,
+    title: 'React Newletter ✍️',
+    body: 'The free, weekly newsletter of the best React news, articles, projects, and more - brought to you by TylerMcGinnis.com. Curated with 💜 by Tyler McGinnis and Ean Platter\n\nService workers can give us instant page loads and the ability to browse with little or no internet connection. This talk includes a Service Worker primer and steps for enabling offline browsing in a React app.\n\nService workers can give us instant page loads and the ability to browse with little or no internet connection. This talk includes a Service Worker primer and steps for enabling offline browsing in a React app.',
+    author: 'Tyler McGinnis and Ean Platter',
+    category: 'react',
+    voteScore: 29,
     deleted: false
   },
 
