@@ -30,8 +30,8 @@ export default ({ post, onClickVote, onPostClick }) => (
         <h2>{post.title}</h2>
         <div className="card-details">
           <p className="description">
-            { post.body.slice(0, 145) }
-            { post.body.length > 145 ? '...' : ''}
+            { post.body.slice(0, 120) }
+            { post.body.length > 120 ? '...' : ''}
           </p>
           <span className="author">by {post.author}</span>
         </div>
