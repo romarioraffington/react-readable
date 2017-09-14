@@ -3,6 +3,7 @@ import {
   SAVE_COMMENT,
   VOTE_COMMENT,
   UPDATE_COMMENT,
+  EDIT_COMMENT,
   DELETE_COMMENT,
 } from './constants';
 
@@ -36,6 +37,11 @@ export const updateComment = (id, { author, body }) => ({
     author,
     body,
   }).then(res => res.data),
+})
+
+export const editComment = (comment) => ({
+  type: EDIT_COMMENT,
+  payload: comment,
 })
 
 export const deleteComment = (id) => ({

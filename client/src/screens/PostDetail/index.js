@@ -11,9 +11,16 @@ import { filterComment } from 'src/models/Filter/actions';
 
 // Our Actions
 import { fetchPost, votePost, deletePost } from 'src/models/Post/actions';
-import { fetchComments, voteComment, saveComment, deleteComment } from 'src/models/Comment/actions';
 import { filterComments } from 'src/models/Filter/actions';
 import { togglePostModal } from 'src/models/PostModal/actions';
+import { 
+  fetchComments,
+  voteComment, 
+  saveComment, 
+  deleteComment, 
+  editComment, 
+  updateComment 
+} from 'src/models/Comment/actions';
 
 // Our Dependencies
 import styles from './index.scss';
@@ -27,6 +34,7 @@ const mapStateToProps = ({ post, comment, filter }) => {
     isFetching: post.isFetching,
     filterType: filter.comment,
     comments: comment.comments,
+    editingComment: comment.editingComment,
   }
 }
 
@@ -37,6 +45,8 @@ const mapDispatchToProps = (dispatch) => {
     saveComment,
     voteComment,
     filterComments,
+    editComment,
+    updateComment,
     deleteComment,
     votePost,
     deletePost,
@@ -62,6 +72,7 @@ class PostDetail extends Component {
       comments,
       voteComment,
       filterType,
+      editingComment,
     } = this.props;
 
     const onDeleteComment = (id) => {
@@ -73,11 +84,26 @@ class PostDetail extends Component {
       this.props.history.push('/')
     }
 
+    // Mark as editing in progress if a 
+    // comment  object is in the state 
+    // and the comment is on the current page
+    const isEditing = 
+      Object.keys(editingComment).length > 0 && 
+      !!comments.find(c => c.id === editingComment.id)
+
     const handleSubmit = (e) => {
       e.preventDefault();
 
       const values = serializeFrom(e.target, { hash: true });
-      this.props.saveComment(values);
+      isEditing ? 
+        this.props.updateComment(editingComment.id, values) : 
+        this.props.saveComment({ ...values, parentId: post.id });
+
+      this.formRef.reset();
+    }
+
+    const cancelForm = () => {
+      this.props.editComment({})
       this.formRef.reset();
     }
 
@@ -88,7 +114,7 @@ class PostDetail extends Component {
         {
           !isFetchingPost && (
             <div className="container">
-              <div className="header">
+              <div id="header" className="header">
                 <span className="date">Published: {formatTimestamp(post.timestamp)}</span>
                 <h2>{post.title}</h2>
                 <p className="author">by {post.author} </p>
@@ -118,12 +144,34 @@ class PostDetail extends Component {
                     onSubmit={handleSubmit}
                   >
                     <fieldset>
-                      <input name="author" type="text" placeholder="Author" required />
+                      <input  
+                        name="author" 
+                        type="text" 
+                        placeholder="Author" 
+                        defaultValue={isEditing ? editingComment.author: ''}
+                        className={isEditing && 'edit-mode'}
+                        required 
+                      />
                     </fieldset>
                     <fieldset>
-                      <textarea name="body" placeholder="Post a Comment!" required></textarea>
+                      <textarea 
+                        name="body" 
+                        placeholder="Post a Comment!" 
+                        defaultValue={isEditing ? editingComment.body: ''} 
+                        className={isEditing && 'edit-mode'}
+                        required 
+                      />
                     </fieldset>
-                    <button className="button button--primary" type="submit">Post 🙌</button>
+                    <button 
+                      type="button" 
+                      className="cancel" 
+                      onClick={() => cancelForm()}
+                    >
+                      Cancel
+                    </button>
+                    <button className="button button--primary" type="submit">
+                      { isEditing ? 'Save 🤞' : 'Post 🙌' }
+                    </button>
                   </form>
                 </div>
         
@@ -142,7 +190,13 @@ class PostDetail extends Component {
                               <span className="author">by {comment.author}</span>
                               <span className="date">{formatTimestamp(comment.timestamp)}</span>
                               <div className="danger-buttons">
-                                <div onClick={() => this.props.togglePostModal(isOpen, post)} className="edit-button"></div>
+                                <a href="#header" 
+                                  onClick={() =>  {
+                                    this.formRef.reset();
+                                    this.props.editComment(comment)
+                                  }} 
+                                  className="edit-button"
+                                ></a>
                                 <div onClick={() => onDeleteComment(comment.id)} className="delete-button"></div>
                               </div>
                               <div className="likes-container">

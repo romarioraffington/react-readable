@@ -131,6 +131,11 @@
           color: $black;
         }
       }
+
+      .edit-mode {
+        transition: 0.5s border ease-out;
+        border: 1px solid rgba(234, 83, 42, 0.9);
+      }
       
       input {
         height: 45px;
@@ -141,6 +146,16 @@
         height: 190px;
         padding: 30px 0 0 40px;
         resize: none;
+      }
+
+      .cancel {
+        border: none;
+        background: transparent;
+        font-size: 1.1em;
+        color: $grey;
+        outline: none;
+        cursor: pointer;
+        margin-right: 20px
       }
 
       .button {

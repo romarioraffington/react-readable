@@ -3,12 +3,14 @@ import {
   SAVE_COMMENT,
   VOTE_COMMENT,
   UPDATE_COMMENT,
+  EDIT_COMMENT,
   DELETE_COMMENT,
 } from './constants';
 
 const initialState = {
   isFetching: false,
   comments: [],
+  editingComment: {},
 }
 
 export default function post(state = initialState, action) {
@@ -40,24 +42,39 @@ export default function post(state = initialState, action) {
       };
 
     case `${VOTE_COMMENT}_FULFILLED`:
-    const { comments } = state;
-    const { id, voteScore } = action.payload;
+      const { comments } = state;
+      const { id, voteScore } = action.payload;
 
-    return {
-      ...state,
-      comments: comments.map(c => c.id === id ? { ...c, voteScore } : c),
-    };
+      return {
+        ...state,
+        comments: comments.map(c => c.id === id ? { ...c, voteScore } : c),
+      };
+
+    case EDIT_COMMENT:
+      return {
+        ...state,
+        editingComment: action.payload,
+      };
+
+    case`${UPDATE_COMMENT}_FULFILLED`:
+      return {
+        ...state,
+        editingComment: {},
+        comments: state.comments.filter(comment =>
+          comment.id !== action.payload.id
+        ).concat(action.payload)
+      };
 
     case `${DELETE_COMMENT}_FULFILLED`:
-    return {
-      ...state,
-      comments: state.comments.map(comment =>
-        comment.id === action.payload ?
-          Object.assign({}, comment, { deleted: true }) :
-          comment
-      )
-    };
-
+      return {
+        ...state,
+        editingComment: {},
+        comments: state.comments.map(comment =>
+          comment.id === action.payload ?
+            Object.assign({}, comment, { deleted: true }) :
+            comment
+        )
+      };
 
     default:
       return state;
