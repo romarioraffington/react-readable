@@ -29,7 +29,10 @@ export default ({ post, onClickVote, onPostClick }) => (
       <div className="card-content" onClick={() => onPostClick(`${post.category}/${post.id}`, post)}>
         <h2>{post.title}</h2>
         <div className="card-details">
-          <p className="description">{post.body}</p>
+          <p className="description">
+            { post.body.slice(0, 145) }
+            { post.body.length > 145 ? '...' : ''}
+          </p>
           <span className="author">by {post.author}</span>
         </div>
       </div>
