@@ -71,6 +71,7 @@
     "start": "concurrently \"npm run server\"  \"npm run client\"",
     "server": "node server",
     "client": "node client",
-    "heroku-prebuild": "npm run build"
+    "heroku-prebuild": "bash ./scripts/heroku-prebuild.sh",
+    "heroku-postbuild":"bash ./scripts/heroku-prebuild.sh"
   }
 }
