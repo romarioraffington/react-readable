@@ -10,8 +10,6 @@ import {
 
 import api from 'src/api';
 import uuidv4 from 'uuid/v4';
-import filter from 'src/app/util/filter';
-
 
 export const fetchPostComment = (id) => ({
   type: FETCH_POST_COMMENTS,
@@ -71,6 +69,5 @@ export const updatePost = (id, {title, body }) => ({
 
 export const deletePost = (id) => ({
   type: DELETE_POST,
-  id,
   payload: api.delete(`/posts/${id}`).then(res => id)
 })
