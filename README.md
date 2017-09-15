@@ -31,6 +31,10 @@ $ npm start
 $ npm run build
 ```
 
+## Possible Improvements
+- [ ] Make Aapp Responsive
+- [ ] Create Tests
+
 ## Backend
 The backend was provided by Udacity. Information about the API server and how to use it can be found [here](docs/API.md).
 
