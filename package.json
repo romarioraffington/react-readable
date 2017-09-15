@@ -70,8 +70,6 @@
     "build": "npm run clean && webpack",
     "start": "concurrently \"npm run server\"  \"npm run client\"",
     "server": "node server",
-    "client": "node client",
-    "heroku-prebuild": "bash ./scripts/heroku-prebuild.sh",
-    "heroku-postbuild":"bash ./scripts/heroku-prebuild.sh"
+    "client": "node client"
   }
 }
