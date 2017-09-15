@@ -32,7 +32,7 @@ $ npm run build
 ```
 
 ## Possible Improvements
-- [ ] Make Aapp Responsive
+- [ ] Make App Responsive
 - [ ] Create Tests
 
 ## Backend
