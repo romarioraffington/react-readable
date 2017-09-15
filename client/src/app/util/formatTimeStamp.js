@@ -9,7 +9,7 @@ export default (timestamp) => {
     'January', 'February', 'March',
     'April', 'May', 'June', 'July',
     'August', 'September', 'October',
-    'November', 'December'
+    'November', 'December',
   ];
   
   const date = new Date(timestamp);
