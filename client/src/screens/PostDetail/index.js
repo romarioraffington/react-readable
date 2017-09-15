@@ -25,7 +25,7 @@ import {
 // Our Dependencies
 import styles from './index.scss';
 import filter from 'src/app/util/filter';
-import formatTimestamp from 'src/app/util/formatTimestamp';
+import timestamp from 'src/app/util/timestamp';
 
 const mapStateToProps = ({ post, comment, filter }) => {
   return {
@@ -115,7 +115,7 @@ class PostDetail extends Component {
           !isFetchingPost && (
             <div className="container">
               <div className="header">
-                <span className="date">Published: {formatTimestamp(post.timestamp)}</span>
+                <span className="date">Published: {timestamp(post.timestamp)}</span>
                 <h2>{post.title}</h2>
                 <p className="author">by {post.author} </p>
                 <div className="meta">
@@ -188,7 +188,7 @@ class PostDetail extends Component {
                             <p>{comment.body}</p>
                             <div className="meta">
                               <span className="author">by {comment.author}</span>
-                              <span className="date">{formatTimestamp(comment.timestamp)}</span>
+                              <span className="date">{timestamp(comment.timestamp)}</span>
                               <div className="danger-buttons">
                                 <a href="#edit-anchor" 
                                   onClick={() =>  {

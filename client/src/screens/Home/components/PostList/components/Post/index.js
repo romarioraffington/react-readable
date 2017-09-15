@@ -3,7 +3,7 @@ import React from 'react';
 
 // Our Dependencies
 import styles from './index.scss';
-import formatTimestamp from 'src/app/util/timestamp';
+import timestamp from 'src/app/util/timestamp';
 
 export default ({ post, onClickVote, onPostClick }) => (
   <li key={post.id} className="post-container">
