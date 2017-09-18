@@ -19,7 +19,7 @@ import {
   saveComment, 
   deleteComment, 
   editComment, 
-  updateComment 
+  updateComment, 
 } from 'src/models/Comment/actions';
 
 // Our Dependencies
@@ -55,7 +55,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 class PostDetail extends Component {
-  componentWillMount() {
+  componentDidMount() {
     const { postId } = this.props.match.params;
     parallel[
       this.props.fetchPost(postId),

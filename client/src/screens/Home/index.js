@@ -36,7 +36,7 @@ const mapDispatchToProps = (dispatch, { onPostClick }) => (
 )
 
 class Home extends Component {
-  componentWillMount() {
+  componentDidMount() {
     parallel[
       this.props.fetchPostsAndComments(),
       this.props.fetchCategories()
