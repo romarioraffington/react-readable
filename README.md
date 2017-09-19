@@ -1,8 +1,9 @@
 <h1 align="center">
   <img src="docs/images/logo.svg" alt="react readable logo" title="react readable logo" width="300">
+  [![MIT License][license-badge]][LICENSE]
   <br>
 </h1>
-<p align="center" style="font-size: 1.2rem;">A content and comment web app similar to Hacker News and Reddit made with React</p>
+<p align="center" style="font-size: 1.2rem;">A content and comment web app similar to Hacker News and Reddit made with React and Node :heart:</p>
 
 <hr />
 
@@ -41,3 +42,5 @@ The backend was provided by Udacity. Information about the API server and how to
 ## LICENSE
 
 MIT
+
+[license-badge]: https://img.shields.io/github/license/romarioraffington/react-readable.svg?style=flat-square
