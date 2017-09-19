@@ -8,6 +8,7 @@
 <hr />
 
 [![MIT License][license-badge]](LICENSE)
+![Node Version](https://img.shields.io/node/v/v.svg?style=flat-square)
 
 <div align="center">
   <img src="docs/images/demo.gif" alt="react readable demo" title="react readable demo">
