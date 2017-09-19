@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import parallel from 'async/parallel';
 import serializeFrom from 'form-serialize';
+import { Link } from 'react-router-dom';
 
 // Our Components
 import Filter from 'src/components/Filter';
@@ -68,8 +69,11 @@ class PostDetail extends Component {
   }
 
   onDeletePost = () => {
-    this.props.deletePost(post.id)
-    this.props.history.push('/')
+    const shouldDelete = confirm("... Continue with Deleting this Post?");
+    if (shouldDelete === true) {
+      this.props.deletePost(this.props.post.id)
+      this.props.history.push('/')
+    }
   }
 
   handleSubmit = (e) => {
@@ -112,7 +116,7 @@ class PostDetail extends Component {
     return (
       <div className="post-detail">
         {
-          !isFetchingPost && (
+          !isFetchingPost && Object.keys(post).length > 0 ? (
             <div className="container">
               <div className="header">
                 <span className="date">Published: {timestamp(post.timestamp)}</span>
@@ -220,6 +224,14 @@ class PostDetail extends Component {
                     </div>
                   )}
                 </div>
+              </div>
+            </div>
+       
+          ): (
+            <div className="container">
+              <div className="header">
+                <h2>Post was removed 😰</h2>
+                <Link className="safety-link" to='/'> Take me to Safety </Link>
               </div>
             </div>
           )

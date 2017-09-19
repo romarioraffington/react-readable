@@ -53,6 +53,14 @@
     width: 28px;
     height: 22px;
   }
+  
+  .safety-link {
+    text-decoration: none;
+    color: $orange;
+    font-size: 1.1em;
+    border-bottom: 2px solid rgba($orange, 0.5);
+    padding-bottom: 4px;
+  }
 
   .header {
     display: flex;
