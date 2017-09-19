@@ -1,11 +1,13 @@
 <h1 align="center">
   <img src="docs/images/logo.svg" alt="react readable logo" title="react readable logo" width="300">
-  [![MIT License][license-badge]][LICENSE]
+
   <br>
 </h1>
 <p align="center" style="font-size: 1.2rem;">A content and comment web app similar to Hacker News and Reddit made with React and Node :heart:</p>
 
 <hr />
+
+[![MIT License][license-badge]](LICENSE)
 
 <div align="center">
   <img src="docs/images/demo.gif" alt="react readable demo" title="react readable demo">
