@@ -11,7 +11,7 @@ import {
 import api from 'src/api';
 import uuidv4 from 'uuid/v4';
 
-export const fetchPostComment = (id) => ({
+export const fetchPostComments = (id) => ({
   type: FETCH_POST_COMMENTS,
   payload: api.get(`/posts/${id}/comments`).then(res => res.data)
 })
@@ -24,7 +24,7 @@ export const fetchPosts = () => ({
 export const fetchPostsAndComments = () => (
   dispatch => (
     dispatch(fetchPosts()).then(({ value: posts }) =>
-      posts.map(post => dispatch(fetchPostComment(post.id)))
+      posts.map(post => dispatch(fetchPostComments(post.id)))
     )
   )
 )
@@ -34,13 +34,6 @@ export const fetchPost = (id) => ({
   payload: api.get(`/posts/${id}`).then(res => res.data)
 })
 
-export const fetchPostAndComments = () => (
-  dispatch => (
-    dispatch(fetchPost()).then(({ value: post }) =>
-      dispatch(fetchPostComment(post.id))
-    )
-  )
-)
 
 export const votePost = (id, option) => ({
   type: VOTE_POST,
