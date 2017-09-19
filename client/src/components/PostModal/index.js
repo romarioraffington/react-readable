@@ -29,29 +29,33 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 class PostModal extends Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchCategories();
+  }
+  
+  // Close Post Modal
+  isOpen = false;
+
+  handleSubmit = (e, isEditable) => {
+    e.preventDefault();
+    const { updatePost, savePost } = this.props;
+    const values = serializeFrom(e.target, { hash: true });
+
+    isEditable ? updatePost(post.id, values) : savePost(values);
+
+    // Close Modal
+    this.props.togglePostModal(this.isOpen);
   }
 
   render() {
-    const isOpen = false;
-    const { post,categories, updatePost, savePost } = this.props;
+    const { post, categories } = this.props;
     const isEditable = Object.keys(post).length !== 0;
-  
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      const values = serializeFrom(e.target, { hash: true });
-      isEditable ? updatePost(post.id, values) : savePost(values);
-      
-      // Close Modal
-      this.props.togglePostModal(isOpen);
-    }
 
     return (
       <div>
         <Modal
           isOpen={this.props.isOpen}
-          onRequestClose={() => this.props.togglePostModal(isOpen)}
+          onRequestClose={() => this.props.togglePostModal(this.isOpen)}
           contentLabel="Post Modal"
           className={{ afterOpen: 'add-post-modal' }}
           overlayClassName={{ afterOpen: 'add-post-modal-overlay' }}
@@ -59,12 +63,12 @@ class PostModal extends Component {
           <div className="header">
             <h2> {isEditable ? '...Edit Post ✍️' : '...Add a Post ✍️'}</h2>
             <span
-              onClick={() => this.props.togglePostModal(isOpen)}
+              onClick={() => this.props.togglePostModal(this.isOpen)}
               className="close-button">
               x
           </span>
           </div>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={(e) => this.handleSubmit(e, isEditable)}>
             <fieldset>
               <input
                 type="text"

@@ -63,6 +63,31 @@ class PostDetail extends Component {
     ]
   }
 
+  onDeleteComment = (id) => {
+    this.props.deleteComment(id)
+  }
+
+  onDeletePost = () => {
+    this.props.deletePost(post.id)
+    this.props.history.push('/')
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+
+    const values = serializeFrom(e.target, { hash: true });
+    isEditing ? 
+      this.props.updateComment(editingComment.id, values) : 
+      this.props.saveComment({ ...values, parentId: post.id });
+
+    this.formRef.reset();
+  }
+
+  cancelForm = () => {
+    this.props.editComment({})
+    this.formRef.reset();
+  }
+
   render() {
     const isOpen = true;
     const { 
@@ -75,37 +100,12 @@ class PostDetail extends Component {
       editingComment,
     } = this.props;
 
-    const onDeleteComment = (id) => {
-      this.props.deleteComment(id)
-    }
-
-    const onDeletePost = () => {
-      this.props.deletePost(post.id)
-      this.props.history.push('/')
-    }
-
     // Mark as editing in progress if a 
-    // comment  object is in the state 
+    // comment object is in the state 
     // and the comment is on the current page
     const isEditing = 
       Object.keys(editingComment).length > 0 && 
       !!comments.find(c => c.id === editingComment.id)
-
-    const handleSubmit = (e) => {
-      e.preventDefault();
-
-      const values = serializeFrom(e.target, { hash: true });
-      isEditing ? 
-        this.props.updateComment(editingComment.id, values) : 
-        this.props.saveComment({ ...values, parentId: post.id });
-
-      this.formRef.reset();
-    }
-
-    const cancelForm = () => {
-      this.props.editComment({})
-      this.formRef.reset();
-    }
 
     const filteredComments = filter(comments.concat(), filterType.order, filterType.by);
 
@@ -130,7 +130,7 @@ class PostDetail extends Component {
                   </div>
                   <div className="danger-buttons">
                     <div onClick={() => this.props.togglePostModal(isOpen, post)} className="edit-button"></div>
-                    <div onClick={onDeletePost} className="delete-button"></div>
+                    <div onClick={this.onDeletePost} className="delete-button"></div>
                   </div>
                 </div>
               </div>
@@ -141,7 +141,7 @@ class PostDetail extends Component {
                 <div className="add-comment-container">
                   <form 
                     ref={(el) => this.formRef = el}
-                    onSubmit={handleSubmit}
+                    onSubmit={this.handleSubmit}
                   >
                     <fieldset>
                       <input  
@@ -165,7 +165,7 @@ class PostDetail extends Component {
                     <button 
                       type="button" 
                       className="cancel" 
-                      onClick={() => cancelForm()}
+                      onClick={() => this.cancelForm()}
                     >
                       Cancel
                     </button>
@@ -197,7 +197,7 @@ class PostDetail extends Component {
                                   }} 
                                   className="edit-button"
                                 ></a>
-                                <div onClick={() => onDeleteComment(comment.id)} className="delete-button"></div>
+                                <div onClick={() => this.onDeleteComment(comment.id)} className="delete-button"></div>
                               </div>
                               <div className="likes-container">
                                 <span className="likes-count">
