@@ -65,7 +65,10 @@ class PostDetail extends Component {
   }
 
   onDeleteComment = (id) => {
-    this.props.deleteComment(id)
+    const shouldDelete = confirm("... Continue with Deleting this Comment?");
+    if (shouldDelete === true) {
+      this.props.deleteComment(id)
+    }
   }
 
   onDeletePost = () => {
