@@ -41,14 +41,14 @@
 
   // Edit / Delete Buttons (General Styles)
   .edit-button {
-    background-image: url('./images/editButton.svg');
+    background-image: url('./images/editButton.png');
     @extend %image-button;
     width: 28px;
     height: 22px;
   }
 
   .delete-button {
-    background-image: url('./images/deleteButton.svg');
+    background-image: url('./images/deleteButton.png');
     @extend %image-button;
     width: 28px;
     height: 22px;
