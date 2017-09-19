@@ -38,7 +38,7 @@ class PostModal extends Component {
 
   handleSubmit = (e, isEditable) => {
     e.preventDefault();
-    const { updatePost, savePost } = this.props;
+    const { post, updatePost, savePost } = this.props;
     const values = serializeFrom(e.target, { hash: true });
 
     isEditable ? updatePost(post.id, values) : savePost(values);
