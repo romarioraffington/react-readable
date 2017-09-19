@@ -76,10 +76,11 @@ class PostDetail extends Component {
     }
   }
 
-  handleSubmit = (e) => {
+  handleSubmit = (e, isEditing) => {
     e.preventDefault();
-
+    const { post, editingComment } = this.props;
     const values = serializeFrom(e.target, { hash: true });
+
     isEditing ? 
       this.props.updateComment(editingComment.id, values) : 
       this.props.saveComment({ ...values, parentId: post.id });
@@ -104,8 +105,8 @@ class PostDetail extends Component {
       editingComment,
     } = this.props;
 
-    // Mark as editing in progress if a 
-    // comment object is in the state 
+    // Mark as a comment as "editing in progress" 
+    // if a comment object is in the state 
     // and the comment is on the current page
     const isEditing = 
       Object.keys(editingComment).length > 0 && 
@@ -145,7 +146,7 @@ class PostDetail extends Component {
                 <div className="add-comment-container">
                   <form 
                     ref={(el) => this.formRef = el}
-                    onSubmit={this.handleSubmit}
+                    onSubmit={(e) => this.handleSubmit(e, isEditing)}
                   >
                     <fieldset>
                       <input  
