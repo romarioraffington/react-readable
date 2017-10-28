@@ -1,19 +1,34 @@
+<br />
+
 <h1 align="center">
   <img src="docs/images/logo.svg" alt="react readable logo" title="react readable logo" width="300">
-
-  <br>
 </h1>
+
+<br />
+
 <p align="center" style="font-size: 1.2rem;">A content and comment web app similar to Hacker News and Reddit made with React and Node :heart:</p>
 
 <hr />
 
-[![MIT License][license-badge]](LICENSE)
-![Node Version](https://img.shields.io/node/v/v.svg?style=flat-square)
+<br />
 
 <div align="center">
-  <img src="docs/images/demo.gif" alt="react readable demo" title="react readable demo">
-  <br>
+  <a href="https://img.shields.io/github/license/romarioraffington/react-readable.svg?style=flat-square">
+    <img src="https://img.shields.io/github/license/romarioraffington/react-readable.svg?style=flat-square" alt="MIT License" />
+  </a>
+  <a href="https://circleci.com/gh/romarioraffington/react-native-flashcards">
+    <img src="https://img.shields.io/node/v/v.svg?style=flat-square" alt="Node Version" />
+  </a>
 </div>
+
+<br />
+<br />
+
+<div align="center">
+  <img src="docs/images/demo.gif" alt="react readable demo" title="react readable demo" />
+</div>
+
+<br />
 
 Users can post content to predefined categories, comment on their posts and other users' posts, and vote on posts and comments. Users will also be able to edit and delete posts and comments.
 
@@ -44,6 +59,4 @@ The backend was provided by Udacity. Information about the API server and how to
 
 ## LICENSE
 
-MIT
-
-[license-badge]: https://img.shields.io/github/license/romarioraffington/react-readable.svg?style=flat-square
+[MIT](LICENSE)
